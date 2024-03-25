@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="db" uuid="d564d800-fb8b-4b70-b4ab-8f262c2f47a2">
+    <data-source source="LOCAL" name="gasDB" uuid="3c3b78e2-e293-4330-83be-aa1d8e303087">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/api/db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/api/gasDB</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
