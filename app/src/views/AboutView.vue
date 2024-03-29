@@ -13,3 +13,6 @@
   }
 }
 </style>
+<script setup>
+import IconLogo from "@/components/icons/IconLogo.vue";
+</script>
