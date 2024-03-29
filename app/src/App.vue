@@ -17,7 +17,6 @@ export default{
       icons: [
         'mdi-facebook',
         'mdi-twitter',
-        'mdi-linkedin',
         'mdi-instagram',
       ],
     }
@@ -44,8 +43,8 @@ export default{
     <v-main>
       <router-view />
     </v-main>
-
-      <v-footer class="d-flex flex-column">
+    <v-content>
+      <v-footer absolute >
         <div class="bg-green d-flex w-100 align-center px-4">
           <IconLogo />
 
@@ -61,6 +60,7 @@ export default{
           ></v-btn>
         </div>
       </v-footer>
+    </v-content>
   </v-app>
 </template>
 
