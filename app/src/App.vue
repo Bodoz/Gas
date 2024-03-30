@@ -44,7 +44,7 @@ export default{
       <router-view />
     </v-main>
     <v-content>
-      <v-footer absolute >
+      <v-footer absolute>
         <div class="bg-green d-flex w-100 align-center px-4">
           <IconLogo />
 
