@@ -116,7 +116,7 @@ export default {
                 </div>
                 <div class="float-lg-right">
                 <v-btn
-                    class="text-none "
+                    class="text-none"
                     size="small"
                     text="Visualizza"
                     border
