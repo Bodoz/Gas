@@ -4,62 +4,62 @@ export default {
 
   data: () => ({
     search: '',
-    games: [
+    gass: [
       {
-        img: 'https://cdn.vuetifyjs.com/docs/images/graphics/games/4.png',
-        title: 'The Sci-Fi Shooter Experience',
-        subtitle: 'Dive into a futuristic world of intense battles and alien encounters.',
+        img: 'https://www.gastore.it/public/avatar/logogas_h7rn8.jpg',
+        title: 'GAS LAGUNA',
+        subtitle: 'Il Gruppo nasce nel giugno 2014, è l\' unico nella nostra città ed è una realtà tra le più attive nel Veneto. È composto ad oggi da circa 80 di famiglie.',
         advanced: false,
-        duration: '8 minutes',
+        place: 'Via San Marco 1857 CHIOGGIA (VE)',
       },
       {
-        img: 'https://cdn.vuetifyjs.com/docs/images/graphics/games/2.png',
-        title: 'Epic Adventures in Open Worlds',
-        subtitle: 'Embark on a journey through vast, immersive landscapes and quests.',
-        advanced: true,
-        duration: '10 minutes',
-      },
-      {
-        img: 'https://cdn.vuetifyjs.com/docs/images/graphics/games/3.png',
-        title: 'Surviving the Space Station Horror',
-        subtitle: 'Navigate a haunted space station in this chilling survival horror game.',
+        img: 'https://www.gastore.it/public/avatar/logogas_1vwqk.jpg',
+        title: 'Associazione credi GAS TOR DE CENCI',
+        subtitle: 'Siamo un gruppo di cristiani di Roma, operiamo nella Parrocchia di Gesù Divin Salvatore nel quartiere di Tor De Cenci nella periferia sud della città.',
         advanced: false,
-        duration: '9 minutes',
+        place: 'VIA BANZI 1 ROMA (RM)',
       },
       {
-        img: 'https://cdn.vuetifyjs.com/docs/images/graphics/games/5.png',
-        title: 'Neon-Lit High-Speed Racing Thrills',
-        subtitle: 'Experience adrenaline-pumping races in a futuristic, neon-soaked city.',
-        advanced: true,
-        duration: '12 minutes',
-      },
-      {
-        img: 'https://cdn.vuetifyjs.com/docs/images/graphics/games/6.png',
-        title: 'Retro-Style Platformer Adventures',
-        subtitle: 'Jump and dash through pixelated worlds in this classic-style platformer.',
+        img: 'https://www.gastore.it/public/avatar/logogas_74wa3.jpg',
+        title: 'Villaggio Saggio a.p.s.',
+        subtitle: 'In un mondo che ha perso la sua dimensione uomo/natura, Villaggio Saggio vuole essere il nuovo modo con il quale possiamo ripensare società, lavoro e natura.',
         advanced: false,
-        duration: '11 minutes',
+        place: 'via dell\'arengo 77/79 OFFAGNA (AN)',
       },
       {
-        img: 'https://cdn.vuetifyjs.com/docs/images/graphics/games/7.png',
-        title: 'Medieval Strategic War Campaigns',
-        subtitle: 'Lead armies into epic battles and conquer kingdoms in this strategic game.',
+        img: 'https://www.gastore.it/public/avatar/logogas_nrbhv.jpg',
+        title: "GasB gruppo d'acquisto solidale biella",
+        subtitle: 'siamo un gruppo di persone che decide di incontrarsi per riflettere sui nostri consumi e per acquistare prodotti di uso comune utilizzando come criterio guida il concetto di giustizia, solidarietà e minimizzazione dell’impatto ambientale.',
         advanced: true,
-        duration: '10 minutes',
+        place: 'via Serralunga 41 presso Cittadellarte, Fondazione Pistoletto (portone Semi Urbani) 13900, CHIAVAZZA (BI)',
       },
       {
-        img: 'https://cdn.vuetifyjs.com/docs/images/graphics/games/1.png',
-        title: 'Underwater VR Exploration Adventure',
-        subtitle: 'Dive deep into the ocean and discover the mysteries of the underwater world.',
+        img: 'https://www.gastore.it/public/avatar/logogas_yo6w7.jpg',
+        title: 'GAeS Giustizia Sociale',
+        subtitle: 'Vogliamo creare uno stretto rapporto con il territorio circostante non solo attraverso la socializzazione fra i membri ma soprattutto nel tentativo di rilanciare un legame con le tradizioni enogastronomiche e culturali dei luoghi di appartenenza.',
         advanced: true,
-        duration: '11 minutes',
+        place: 'Via Travi 84 r SESTRI PONENTE (GE)',
       },
       {
-        img: 'https://cdn.vuetifyjs.com/docs/images/graphics/games/8.png',
-        title: '1920s Mystery Detective Chronicles',
-        subtitle: 'Solve crimes and uncover secrets in the glamourous 1920s era.',
+        img: 'https://www.gastore.it/public/avatar/logogas_2xozi.jpg',
+        title: 'GRUPPO ACQUISTI SOLIDALE Economia di PROSSIMITA',
+        subtitle: 'favorisce il consumo responsabile, offrendo prodotti locali e sostenibili. Attraverso incontri regolari, promuoviamo la solidarietà e la connessione tra produttori e consumatori, contribuendo alla crescita di una comunità consapevole e impegnata.',
+        advanced: true,
+        place: 'VIA GREGORIO ASBESTA 18/6 SOLARINO (SR)',
+      },
+      {
+        img: 'https://www.gastore.it/public/avatar/logogas_0q3ul.jpg',
+        title: 'GAeS Riviera',
+        subtitle: 'Siamo un Gruppo di Acquisto Solidale formato da persone che condividono i valori di Etica, Ecologia, Solidarietà e Collaborazione, e che puntano ad adottare stili di vita sostenibili e consapevoli. ',
         advanced: false,
-        duration: '9 minutes',
+        place: 'Opere Parrocchiali San Giorgio - Via Don Pelle, 20 ALBENGA (SV)',
+      },
+      {
+        img: 'https://www.gastore.it/public/avatar/logogas_qxcgg.jpg',
+        title: 'Salento Express Gas',
+        subtitle: 'Vogliamo creare uno stretto rapporto con il territorio circostante non solo attraverso la socializzazione fra i membri ma soprattutto nel tentativo di rilanciare un legame con le tradizioni enogastronomiche e culturali dei luoghi di appartenenza.',
+        advanced: true,
+        place: 'piazza Jan Palach, 32 ROMA (RM)',
       },
     ],
   }),
@@ -69,7 +69,7 @@ export default {
 <template>
   <v-card>
     <v-data-iterator
-        :items="games"
+        :items="gass"
         :items-per-page="3"
         :search="search"
     >
@@ -98,7 +98,7 @@ export default {
                 md="4"
             >
               <v-card class="pb-3" border flat>
-                <v-img :src="item.raw.img"></v-img>
+                <v-img :src="item.raw.img" height="200"></v-img>
 
                 <v-list-item :subtitle="item.raw.subtitle" class="mb-2">
                   <template v-slot:title>
@@ -108,19 +108,21 @@ export default {
 
                 <div class="d-flex justify-space-between px-4">
                   <div class="d-flex align-center text-caption text-medium-emphasis me-1">
-                    <v-icon icon="mdi-clock" start></v-icon>
+                    <v-icon icon="mdi-map-marker" start></v-icon>
 
-                    <div class="text-truncate">{{ item.raw.duration }}</div>
+                    <div class="text-truncate">{{ item.raw.place }}</div>
                   </div>
 
-                  <v-btn
-                      class="text-none"
-                      size="small"
-                      text="Read"
-                      border
-                      flat
-                  >
-                  </v-btn>
+                </div>
+                <div class="float-lg-right">
+                <v-btn
+                    class="text-none "
+                    size="small"
+                    text="Visualizza"
+                    border
+                    flat
+                >
+                </v-btn>
                 </div>
               </v-card>
             </v-col>
