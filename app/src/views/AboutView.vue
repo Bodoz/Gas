@@ -1,7 +1,7 @@
 <template>
   <v-layout >
     <v-main>
-    <img src="@/assets/aboutFoto.png" height="600" width="1300">
+    <img src="@/assets/aboutFoto.png" class="ciao">
       <div >
         <h1 class="justify-center align-center text-center">Benvenuti su GasGas.it!</h1>
 
@@ -43,7 +43,10 @@
 </template>
 
 <style>
-
+.ciao{
+  height: 60%;
+  width: 100%;
+}
 </style>
 
 <script setup>
