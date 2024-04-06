@@ -62,6 +62,9 @@ export default {
         place: 'piazza Jan Palach, 32 ROMA (RM)',
       },
     ],
+    links: [
+      {to: "/visualizzaGas", text: "visualizzaGas"},
+    ],
   }),
 }
 </script>
@@ -121,6 +124,8 @@ export default {
                     text="Visualizza"
                     border
                     flat
+                    v-for="i in links"
+                    :to="i.to"
                 >
                 </v-btn>
                 </div>
