@@ -12,7 +12,7 @@ export default{
         {to: "/about", text: "About"},
         {to: "/gas", text: "Gas"},
         {to: "/contatti", text: "Contatti"},
-        {to: "/accesso", text: "Accedi/registrati"},
+        {to: "/accesso", text: "Accedi"},
       ],
       icons: [
         'mdi-facebook',

@@ -1,63 +1,74 @@
 <script>
 export default {
-  name: "AccessoView"
+  name: "AccessoView",
+
+  data: () => ({
+    visible: false,
+  }),
 }
 </script>
 
 <template>
-  <h1 class="bg-green">Accedi</h1>
-  <br>
-  <form @submit.prevent="submit">
-    <v-text-field
-        v-model="username.value.value"
-        :counter="10"
-        :error-messages="username.errorMessage.value"
-        label="Username"
-    ></v-text-field>
+  <div>
 
-    <v-text-field
-        v-model="password.value.value"
-        :error-messages="password.errorMessage.value"
-        label="Password"
-    ></v-text-field>
 
-    <v-btn
-        class="me-4"
-        type="submit"
+    <v-card
+        class="mx-auto pa-12 pb-8"
+        elevation="8"
+        max-width="448"
+        rounded="lg"
     >
-      Login
-    </v-btn>
-    <v-btn >
-      Registrati
-    </v-btn>
-  </form>
+      <div class="text-subtitle-1 text-medium-emphasis">Account</div>
+
+      <v-text-field
+          density="compact"
+          placeholder="Email address"
+          prepend-inner-icon="mdi-account"
+          variant="outlined"
+      ></v-text-field>
+
+      <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
+        Password
+      </div>
+
+      <v-text-field
+          :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+          :type="visible ? 'text' : 'password'"
+          density="compact"
+          placeholder="Enter your password"
+          prepend-inner-icon="mdi-lock-outline"
+          variant="outlined"
+          @click:append-inner="visible = !visible"
+      ></v-text-field>
+
+      <v-card
+          class="mb-12"
+          color="surface-variant"
+          variant="tonal"
+      >
+      </v-card>
+
+      <v-btn
+          class="mb-8"
+          color="blue"
+          size="large"
+          variant="tonal"
+          block
+      >
+        Accedi
+      </v-btn>
+
+      <v-card-text class="text-center">
+        <a
+            class="text-blue text-decoration-none"
+            href="/registrati"
+        >
+          Registrati <v-icon icon="mdi-chevron-right"></v-icon>
+        </a>
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
-
-<script setup>
-import { useField, useForm } from 'vee-validate'
-
-const { handleSubmit } = useForm({
-  validationSchema: {
-    name (value) {
-      if (value?.length >= 2) return true
-
-      return 'inserisci username corretto.'
-    },
-    email (value) {
-      if (value?.length >= 2) return true
-
-      return "inserisci username corretta."
-    },
-  },
-})
-const username = useField('username')
-const password = useField('password')
-
-
-const submit = handleSubmit(values => {
-  alert(JSON.stringify(values, null, 2))
-})
-</script>
 
 <style scoped>
 

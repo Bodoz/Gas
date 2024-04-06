@@ -1,6 +1,4 @@
 <script>
-import GasView from "@/views/GasView.vue";
-
 export default {
   name: "visualizzaGas",
 }

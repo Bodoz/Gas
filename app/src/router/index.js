@@ -4,6 +4,7 @@ import GasView from "@/views/GasView.vue";
 import ContattiView from "@/views/ContattiView.vue";
 import AccessoView from "@/views/AccessoView.vue";
 import SingleGas from "@/views/SingleGas.vue";
+import RegistratiView from "@/views/RegistratiView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,7 +34,7 @@ const router = createRouter({
     },
     {
       path: '/accesso',
-      name: 'Accedi/registrati',
+      name: 'Accedi',
       component: AccessoView
     },
     {
@@ -41,6 +42,11 @@ const router = createRouter({
       name: 'visualizzaGas',
       component: SingleGas
     },
+    {
+      path: '/registrati',
+      name: 'Registrati',
+      component: RegistratiView
+    }
   ]
 })
 
