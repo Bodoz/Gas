@@ -16,6 +16,9 @@ export default {
       id_gas: '',
     },
     nome: null,
+    links: [
+      {to: "/visualizzaGas", text: "visualizzaGas"},
+    ],
   }),
   computed: {
     ...mapState(useGassStore, ['gass']),
@@ -114,21 +117,21 @@ export default {
         </v-toolbar>
       </template>
 
-      <template v-slot:default="{ items }">
+      <template v-slot:default="{ items : gass }">
         <v-container class="pa-2" fluid>
           <v-row dense>
             <v-col
-                v-for="item in items"
-                :key="item.title"
+                v-for="item in gass"
+                :key="item.nome"
                 cols="auto"
                 md="4"
             >
               <v-card class="pb-3" border flat>
-                <v-img :src="item.raw.img" height="200"></v-img>
+<!--                <v-img :src="item.raw.img"></v-img>-->
 
-                <v-list-item :subtitle="item.raw.subtitle" class="mb-2">
+                <v-list-item :subtitle="item.raw.descrizione" class="mb-2">
                   <template v-slot:title>
-                    <strong class="text-h6 mb-2">{{ item.raw.title }}</strong>
+                    <strong class="text-h6 mb-2">{{ item.raw.nome }}</strong>
                   </template>
                 </v-list-item>
 
@@ -136,7 +139,7 @@ export default {
                   <div class="d-flex align-center text-caption text-medium-emphasis me-1">
                     <v-icon icon="mdi-map-marker" start></v-icon>
 
-                    <div class="text-truncate">{{ item.raw.place }}</div>
+                    <div class="text-truncate">{{ item.raw.via }}, {{item.raw.civico}}, {{item.raw.paese}}, {{item.raw.provincia}}</div>
                   </div>
 
                 </div>
