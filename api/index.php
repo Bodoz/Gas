@@ -17,6 +17,18 @@ $f3 -> route(
     }
 );
 
+//elenco dei gass
+$f3 -> route(
+    'GET /gas',
+    function ($f3, $params){
+        echo json_encode([
+            'result' => true,
+            'data' => get_gass(),
+            'msg' => 'elenco gas'
+        ]);
+    }
+);
+
 $f3->route(
     'GET /*',
     function () {

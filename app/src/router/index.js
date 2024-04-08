@@ -1,10 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import GasView from "@/views/GasView.vue";
-import ContattiView from "@/views/ContattiView.vue";
-import AccessoView from "@/views/AccessoView.vue";
-import SingleGas from "@/views/SingleGas.vue";
-import RegistratiView from "@/views/RegistratiView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('../views/HomeView.vue')
     },
     {
       path: '/about',
@@ -25,27 +20,27 @@ const router = createRouter({
     {
       path: '/gas',
       name: 'Gas',
-      component: GasView
+      component: () => import('../views/GasView.vue')
     },
     {
       path: '/contatti',
       name: 'contatti',
-      component: ContattiView
+      component: () => import('../views/ContattiView.vue')
     },
     {
       path: '/accesso',
       name: 'Accedi',
-      component: AccessoView
+      component: () => import('../views/AccessoView.vue')
     },
     {
       path: '/VisualizzaGas',
       name: 'visualizzaGas',
-      component: SingleGas
+      component: () => import('../views/SingleGas.vue')
     },
     {
       path: '/registrati',
       name: 'Registrati',
-      component: RegistratiView
+      component: () => import('../views/RegistratiView.vue')
     }
   ]
 })

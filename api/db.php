@@ -12,3 +12,13 @@ function get_users(){
     $users = $stmt -> fetchAll(PDO::FETCH_ASSOC); //fetchAll se ottengo più righe dalla query
     return $users;
 }
+
+function get_gass(){
+    global $db;
+
+    $sql = "SELECT * FROM gass";
+    $stmt = $db -> prepare($sql);
+    $stmt -> execute();
+    $gass= $stmt -> fetchAll(PDO::FETCH_ASSOC); //fetchAll se ottengo più righe dalla query
+    return $gass;
+}

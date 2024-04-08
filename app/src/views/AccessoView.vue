@@ -22,7 +22,7 @@ export default {
 
       <v-text-field
           density="compact"
-          placeholder="Email address"
+          placeholder="Username"
           prepend-inner-icon="mdi-account"
           variant="outlined"
       ></v-text-field>
@@ -35,7 +35,7 @@ export default {
           :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
           :type="visible ? 'text' : 'password'"
           density="compact"
-          placeholder="Enter your password"
+          placeholder="password"
           prepend-inner-icon="mdi-lock-outline"
           variant="outlined"
           @click:append-inner="visible = !visible"
