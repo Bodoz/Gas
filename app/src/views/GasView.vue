@@ -154,6 +154,20 @@ export default {
                     :to="i.to"
                 >
                 </v-btn>
+                  <v-btn
+                      class="text-none"
+                      size="small"
+                      text="Modifica"
+                      border
+                      flat
+                  ></v-btn>
+                  <v-btn
+                      class="text-none"
+                      size="small"
+                      text="Elimina"
+                      border
+                      flat
+                  ></v-btn>
                 </div>
               </v-card>
             </v-col>
@@ -187,6 +201,15 @@ export default {
         </div>
       </template>
     </v-data-iterator>
+    <div class="text-center">
+    <v-btn
+        class="text-none"
+        size="small"
+        text="Aggiungi"
+        border
+        flat
+    ></v-btn>
+    </div>
   </v-card>
 </template>
 

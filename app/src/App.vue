@@ -1,12 +1,12 @@
 <script>
-
 import IconLogo from "@/components/icons/IconLogo.vue";
+
 
 export default{
   components: {IconLogo},
   data() {
     return {
-      show_login: true,
+
       links: [
         {to: "/", text: "Home"},
         {to: "/about", text: "About"},
@@ -61,6 +61,7 @@ export default{
         </div>
       </v-footer>
     </v-content>
+
   </v-app>
 </template>
 
