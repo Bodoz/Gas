@@ -121,17 +121,17 @@ export default {
         <v-container class="pa-2" fluid>
           <v-row dense>
             <v-col
-                v-for="item in gass"
-                :key="item.nome"
+                v-for="gas in gass"
+                :key="gas.nome"
                 cols="auto"
                 md="4"
             >
               <v-card class="pb-3" border flat>
-<!--                <v-img :src="item.raw.img"></v-img>-->
+<!--                <v-img :src="gas.raw.img"></v-img>-->
 
-                <v-list-item :subtitle="item.raw.descrizione" class="mb-2">
+                <v-list-item :subtitle="gas.raw.descrizione" class="mb-2">
                   <template v-slot:title>
-                    <strong class="text-h6 mb-2">{{ item.raw.nome }}</strong>
+                    <strong class="text-h6 mb-2">{{ gas.raw.nome }}</strong>
                   </template>
                 </v-list-item>
 
@@ -139,14 +139,15 @@ export default {
                   <div class="d-flex align-center text-caption text-medium-emphasis me-1">
                     <v-icon icon="mdi-map-marker" start></v-icon>
 
-                    <div class="text-truncate">{{ item.raw.via }}, {{item.raw.civico}}, {{item.raw.paese}}, {{item.raw.provincia}}</div>
+                    <div class="text-truncate">{{ gas.raw.via }}, {{gas.raw.civico}}, {{gas.raw.paese}}, {{gas.raw.provincia}}</div>
                   </div>
 
                 </div>
                 <div class="float-lg-right">
                 <v-btn
-                    class="text-none"
+                    class="text-none mr-1"
                     size="small"
+                    color="green"
                     text="Visualizza"
                     border
                     flat
@@ -155,18 +156,21 @@ export default {
                 >
                 </v-btn>
                   <v-btn
-                      class="text-none"
+                      class="text-none mr-1"
                       size="small"
+                      color="yellow"
                       text="Modifica"
                       border
                       flat
                   ></v-btn>
                   <v-btn
-                      class="text-none"
+                      class="text-none mr-1"
                       size="small"
+                      color="red"
                       text="Elimina"
                       border
                       flat
+
                   ></v-btn>
                 </div>
               </v-card>
@@ -208,8 +212,10 @@ export default {
         text="Aggiungi"
         border
         flat
+        color="primary"
     ></v-btn>
     </div>
+    <br>
   </v-card>
 </template>
 
