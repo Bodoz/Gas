@@ -76,6 +76,54 @@ $f3 -> route(
     }
 );
 
+//Aggiungere un nuovo gas
+$f3->route(
+    'POST /gas',
+    function ($f3, $params) {
+        $data = json_decode(file_get_contents('php://input'), true);
+        if ($data['nome'] != '' and $data['descrizione'] != '' and $data['via'] != '' and $data['civico'] != '' and $data['paese'] != '' and $data['provincia'] != '') {
+            $gas = add_gas($data['nome'], $data['descrizione'], $data['via'], $data['civico'], $data['paese'], $data['provincia']);
+            $r = [
+                'result' => true,
+                'data' => [$gas],
+                'msg' => 'Ok'
+            ];
+        } else {
+            $r =  [
+                'result' => false,
+                'data' => [],
+                'msg' => 'Dati forniti non validi'
+            ];
+            http_response_code(400);
+        }
+        echo json_encode($r);
+    }
+);
+
+//Eliminare un gas
+$f3->route(
+    'DELETE /gas/@id',
+    function ($f3, $params) {
+        $gas = get_gas($params['id']);
+        del_gas($params['id']);
+        if ($gas) {
+            $r =  [
+                'result' => true,
+                'data' => [$gas],
+                'msg' => 'Ok'
+            ];
+        } else {
+            $r =  [
+                'result' => false,
+                'data' => [],
+                'msg' => 'Ko'
+            ];
+            http_response_code(404);
+        }
+        echo json_encode($r);
+    }
+);
+
 $f3->route(
     'GET /*',
     function () {

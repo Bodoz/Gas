@@ -1,5 +1,5 @@
 <script>
-import {mapState} from "pinia";
+import {mapState, mapActions} from "pinia";
 import {useGassStore} from "@/stores/gas.js";
 
 const gassStore = useGassStore()
@@ -22,6 +22,13 @@ export default {
   }),
   computed: {
     ...mapState(useGassStore, ['gass']),
+  },
+  methods: {
+    ...mapActions(useGassStore, ['deleteGas', 'newGas']),
+
+    confirmDeleteGas(id) {
+      (confirm("sei sicuro di cancellare questo gas?")) && this.deleteGas(id)
+    },
   },
   mounted() {
     gassStore.fetchGass()
@@ -170,7 +177,7 @@ export default {
                       text="Elimina"
                       border
                       flat
-
+                      @click.stop="confirmDeleteGas(gas.raw.id_gas)"
                   ></v-btn>
                 </div>
               </v-card>

@@ -17,9 +17,14 @@ export const useGassStore = defineStore("gas",{
                 console.log(error)
             }
         },
+        async newGas(gas) {
+            const data = await axios.post(`api/gas/`, gas)
+            if(data.data.result){
+                this.gas.push(data.data.data[0])
+            }
+        },
         async deleteGas(id){
             const g = this.gass.find(x => x.id_gas === id)
-            g.isLoading = true
             const data = await axios.delete(`api/gas/${id}`)
             console.log(data.data)
             if (data.data.result) {
