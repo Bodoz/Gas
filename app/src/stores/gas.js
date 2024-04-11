@@ -23,12 +23,16 @@ export const useGassStore = defineStore("gas",{
                 this.gas.push(data.data.data[0])
             }
         },
-        async deleteGas(id){
-            const g = this.gass.find(x => x.id_gas === id)
-            const data = await axios.delete(`api/gas/${id}`)
+        async updateGas(gas) {
+            const i = this.gass.findIndex(x => x.id_gas === gas.id_gas)
+            const data = await axios.put(`api/gas/${gas.id_gas}`, gas)
+            this.gass[i] = data.data.data[0]
+        },
+        async deleteGas(id_gas){
+            const data = await axios.delete(`api/gas/${id_gas}`)
             console.log(data.data)
             if (data.data.result) {
-                this.gass = this.gass.filter(x => x.id_gas !== id)
+                this.gass = this.gass.filter(x => x.id_gas !== id_gas)
             }
         },
     },

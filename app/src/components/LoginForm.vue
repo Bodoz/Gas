@@ -36,6 +36,9 @@
                     :counter="16"
                     maxlength="16"
                     :rules="passwordRules"
+                    :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                    :type="visible ? 'text' : 'password'"
+                    @click:append-inner="visible = !visible"
                     label="Password"
                     required
                 ></v-text-field>
@@ -73,6 +76,7 @@ import {useUsersStore} from "@/stores/users.js";
 export default {
   props: {
     show: Boolean,
+    visible: false,
   },
   data: () => ({
     valid: false,

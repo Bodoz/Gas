@@ -1,19 +1,40 @@
 <?php
 //ROUTE
+header('Content-type: application/json; charset=UTF-8');
 
+session_start();
 $f3 = require('lib/base.php');
 require_once 'db.php';
-header('Content-type: application/json; charset=UTF-8');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///  U S E R S
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 $f3->route(
+    'GET /users/authorized',
+    function ($f3, $params) {
+        if ( isset($_SESSION['user'])){
+            $r = [
+                'result' => true,
+                'data' => $_SESSION['user'],
+                'msg' => 'you are logged in'
+            ];
+        }else {
+            $r = [
+                'result' => false,
+                'data' => false,
+                'msg' => 'you are NOT logged in'
+            ];
+        }
+        echo json_encode($r);
+    }
+);
+
+$f3->route(
     'POST /users/authorize',
     function ($f3, $params) {
         $data = json_decode(file_get_contents('php://input'), true);
-        if ($data['username'] != '' and $data['password'] != '') {
+        if ($data and $data['username'] != '' and $data['password'] != '') {
             if ($data['username'] == 'admin' and $data['password'] == '1234') {
                 $r = [
                     'result' => true,
@@ -24,22 +45,19 @@ $f3->route(
                     ],
                     'msg' => 'you are logged in'
                 ];
-                $_SESSION['user'] = 1;
+                $_SESSION['user'] = $r['data'];
             }else {
                 $r = [
                     'result' => false,
-                    'data' => [
-                        'username' => false,
-                        'role' => false,
-                    ],
-                    'msg' => 'you are NOT logged in'
+                    'data' => null,
+                    'msg' => 'username or password empty, logged out'
                 ];
                 unset($_SESSION['user']);
             }
         } else {
             $r =  [
                 'result' => false,
-                'data' => [],
+                'data' => null,
                 'msg' => 'username or password empty, logged out'
             ];
             unset($_SESSION['user']);
@@ -100,6 +118,31 @@ $f3->route(
     }
 );
 
+// Modificare un gas
+$f3->route('PUT /gas/@id',
+    function($f3, $params) {
+        $data =  json_decode(file_get_contents('php://input'), true);
+        if ($params['id_gas'] > 0 && $data['nome'] != '' && $data['descrizione'] != '' && $data['via'] != '' && $data['civico'] != '' && $data['paese'] != '' && $data['provincia'] != '') {
+            $gas = save_gas($params['id_gas'], $data['nome'], $data['descrizione'], $data['via'], $data['civico'], $data['paese'], $data['provincia']);
+
+            $r = [
+                'result' => true,
+                'data' => [$gas],
+                'msg' => 'Correct'
+            ];
+            http_response_code(201);
+        } else {
+            $r = [
+                'result' => false,
+                'data' => [null],
+                'msg' => 'Error'
+            ];
+            http_response_code(400);
+        }
+        echo json_encode($r);
+    }
+);
+
 //Eliminare un gas
 $f3->route(
     'DELETE /gas/@id',
@@ -124,6 +167,7 @@ $f3->route(
     }
 );
 
+//get all
 $f3->route(
     'GET /*',
     function () {

@@ -23,6 +23,7 @@ export default {
   computed: {
     ...mapState(useGassStore, ['gass']),
   },
+  emits: ['update', 'opened'],
   methods: {
     ...mapActions(useGassStore, ['deleteGas', 'newGas']),
 
@@ -220,6 +221,7 @@ export default {
         border
         flat
         color="primary"
+
     ></v-btn>
     </div>
     <br>

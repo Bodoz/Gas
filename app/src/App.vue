@@ -1,18 +1,18 @@
 <script>
 import IconLogo from "@/components/icons/IconLogo.vue";
-
+import LoginForm from "@/components/LoginForm.vue"
+import {mapActions, mapState, mapWritableState} from "pinia";
+import {useUsersStore} from "@/stores/users.js";
 
 export default{
-  components: {IconLogo},
+  components: {IconLogo, LoginForm},
   data() {
     return {
-
       links: [
         {to: "/", text: "Home"},
         {to: "/about", text: "About"},
         {to: "/gas", text: "Gas"},
         {to: "/contatti", text: "Contatti"},
-        {to: "/accesso", text: "Accedi"},
       ],
       icons: [
         'mdi-facebook',
@@ -20,6 +20,27 @@ export default{
         'mdi-instagram',
       ],
     }
+  },
+  computed: {
+    logged() {
+      return this.user ? "Logout" : "Login"
+    },
+    ...mapState(useUsersStore, ['user']),
+    ...mapWritableState(useUsersStore, ['show_login']),
+  },
+  methods: {
+    ...mapActions(useUsersStore, ['authorized', 'authorize']),
+
+    login() {
+      if (this.user){
+        this.authorize()
+      } else {
+        this.show_login = true
+      }
+    },
+  },
+  beforeMount() {
+    this.authorized()
   }
 }
 </script>
@@ -38,6 +59,10 @@ export default{
             :to="i.to"
         >{{ i.text }}</v-tab>
       </v-tabs>
+      <v-btn
+          class="mx-1"
+          @click="login"
+      >{{ logged }}</v-btn>
     </v-app-bar>
 
     <v-main>
@@ -47,9 +72,7 @@ export default{
       <v-footer absolute>
         <div class="bg-green d-flex w-100 align-center px-4">
           <IconLogo />
-
           <v-spacer></v-spacer>
-
           <v-btn
               v-for="icon in icons"
               :key="icon"
@@ -61,7 +84,7 @@ export default{
         </div>
       </v-footer>
     </v-content>
-
+    <LoginForm></LoginForm>
   </v-app>
 </template>
 

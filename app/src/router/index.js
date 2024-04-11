@@ -27,11 +27,6 @@ const router = createRouter({
       component: () => import('../views/ContattiView.vue')
     },
     {
-      path: '/accesso',
-      name: 'Accedi',
-      component: () => import('../views/AccessoView.vue')
-    },
-    {
       path: '/VisualizzaGas',
       name: 'visualizzaGas',
       component: () => import('../views/SingleGas.vue')
