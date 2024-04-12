@@ -34,15 +34,13 @@ $f3->route(
     'POST /users/authorize',
     function ($f3, $params) {
         $data = json_decode(file_get_contents('php://input'), true);
-        if ($data and $data['username'] != '' and $data['password'] != '') {
-            if ($data['username'] == 'admin' and $data['password'] == '1234') {
+        if ($data && $data['username'] != '' && $data['password'] != '') {
+            $user = get_user($data['username']);
+            if ($user && md5($data['password']) == $user['password']) {
+                unset($user['password']);
                 $r = [
                     'result' => true,
-                    'data' => [
-                        'id' => 1,
-                        'username' => 'admin',
-                        'role' => 'admin',
-                    ],
+                    'data' => $user,
                     'msg' => 'you are logged in'
                 ];
                 $_SESSION['user'] = $r['data'];
@@ -50,7 +48,7 @@ $f3->route(
                 $r = [
                     'result' => false,
                     'data' => null,
-                    'msg' => 'username or password empty, logged out'
+                    'msg' => 'invalid username or password'
                 ];
                 unset($_SESSION['user']);
             }

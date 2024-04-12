@@ -1,9 +1,11 @@
 <script>
 import {mapState, mapActions} from "pinia";
 import {useGassStore} from "@/stores/gas.js";
+import GasForm from "@/components/GasForm.vue";
 
 const gassStore = useGassStore()
 export default {
+  components: {GasForm},
   data: () => ({
     search: '',
     emptyGas: {
@@ -214,15 +216,25 @@ export default {
       </template>
     </v-data-iterator>
     <div class="text-center">
-    <v-btn
-        class="text-none"
-        size="small"
-        text="Aggiungi"
-        border
-        flat
-        color="primary"
+      <v-dialog max-width="500">
+        <template v-slot:activator="{ props: activatorProps }">
+          <v-btn
+              v-bind="activatorProps"
+              class="text-none"
+              size="small"
+              text="Aggiungi"
+              border
+              flat
+              color="primary"
+          ></v-btn>
+        </template>
 
-    ></v-btn>
+        <template v-slot:default="{ isActive }">
+          <v-card title="Dialog">
+            <GasForm></GasForm>
+          </v-card>
+        </template>
+      </v-dialog>
     </div>
     <br>
   </v-card>

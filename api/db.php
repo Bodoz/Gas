@@ -7,10 +7,33 @@ $db = new PDO('sqlite:gasDB');
 ///  U S E R S
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
+function get_user($username){
+    global $db;
+
+    $sql = "SELECT * FROM users WHERE username = :username";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':username', $username);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if($user) {
+        $sql = "SELECT * FROM roles R 
+            LEFT JOIN user_roles UR ON UR.role_id = R.id
+            WHERE UR.user_id = :user_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user['id']);
+        $stmt->execute();
+        $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $user['roles'] = $roles;
+    }
+
+    return $user;
+}
+
 function get_users(){
     global $db;
 
-    $sql = "SELECT * FROM utenti";
+    $sql = "SELECT * FROM users";
     $stmt = $db -> prepare($sql);
     $stmt -> execute();
     $users = $stmt -> fetchAll(PDO::FETCH_ASSOC); //fetchAll se ottengo più righe dalla query
