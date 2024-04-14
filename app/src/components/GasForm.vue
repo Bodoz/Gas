@@ -45,21 +45,31 @@
     <div class="d-flex justify-end">
     <v-btn
         class="me-4"
-        type="submit"
+        @click="saveGas"
     >
-      submit
+      Save
     </v-btn>
 
-    <v-btn>
-      clear
+    <v-btn
+        class="me-4"
+        @click="this.$emit('closed')"
+    >Close
     </v-btn>
     </div>
   </form>
 </template>
 
 <script>
+import {mapActions, mapState, mapWritableState} from "pinia";
+import {useGassStore} from "@/stores/gas.js";
+
+const gassStore = useGassStore()
 export default {
   name: "GasForm",
+  props: {
+
+  },
+  emits: ['closed'],
   data() {
     return {
       nome: "",
@@ -68,6 +78,24 @@ export default {
       civico: "",
       paese: "",
       provincia: ""
+    }
+  },
+  computed: {
+    ...mapState(useGassStore, ['gass']),
+  },
+  methods: {
+    ...mapActions(useGassStore, ['newGas', 'updateTodo']),
+    saveGas(){
+      let gasOBJ = {
+        nome: this.nome,
+        descrizione: this.descrizione,
+        via: this.via,
+        civico: this.civico,
+        paese: this.paese,
+        provincia: this.provincia
+      }
+        this.newGas(gasOBJ)
+        this.$emit('closed')
     }
   },
 }

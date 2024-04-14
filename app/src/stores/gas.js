@@ -20,7 +20,7 @@ export const useGassStore = defineStore("gas",{
         async newGas(gas) {
             const data = await axios.post(`api/gas/`, gas)
             if(data.data.result){
-                this.gas.push(data.data.data[0])
+                this.gass.push(data.data.data[0])
             }
         },
         async updateGas(gas) {
