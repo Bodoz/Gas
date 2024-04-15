@@ -30,6 +30,7 @@
     ></v-text-field>
     <v-text-field
         v-model="provincia"
+        :model-value="action ? gas.provincia : ''"
         color="green"
         label="Provincia"
         style="min-height: 96px"
@@ -67,7 +68,8 @@ const gassStore = useGassStore()
 export default {
   name: "GasForm",
   props: {
-
+    gas: Object,
+    action: Boolean,
   },
   emits: ['closed'],
   data() {
@@ -81,10 +83,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(useGassStore, ['gass']),
+    ...mapState(useGassStore, ['gass', 'gas']),
   },
   methods: {
-    ...mapActions(useGassStore, ['newGas', 'updateTodo']),
+    ...mapActions(useGassStore, ['newGas', 'updateGas']),
     saveGas(){
       let gasOBJ = {
         nome: this.nome,

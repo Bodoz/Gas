@@ -58,14 +58,33 @@
                     :to="i.to"
                 >
                 </v-btn>
-                  <v-btn
-                      class="text-none mr-1"
-                      size="small"
-                      color="yellow"
-                      text="Modifica"
-                      border
-                      flat
-                  ></v-btn>
+                    <v-dialog max-width="500">
+                      <template v-slot:activator="{ props: activatorProps }">
+                        <v-btn
+                            v-bind="activatorProps"
+                            class="text-none mr-1"
+                            size="small"
+                            color="yellow"
+                            text="Modifica"
+                            border
+                            flat
+                        ></v-btn>
+                      </template>
+
+                      <template v-slot:default="{ isActive }">
+                        <v-card
+                            title="Modifica Gas"
+                        >
+                          <GasForm
+                              :gas="g"
+                              :action = "true"
+                              @closed="isActive.value = false"
+                          ></GasForm>
+                        </v-card>
+                      </template>
+                    </v-dialog>
+
+
                   <v-btn
                       class="text-none mr-1"
                       size="small"
@@ -126,7 +145,7 @@
           <v-card
               title="Nuovo Gas">
             <GasForm
-            @closed="isActive.value = false"
+                @closed="isActive.value = false"
             ></GasForm>
           </v-card>
         </template>
@@ -155,7 +174,7 @@ export default {
       provincia: '',
       id_gas: '',
     },
-    gas: null,
+    g: null,
     links: [
       {to: "/visualizzaGas", text: "visualizzaGas"},
     ],
@@ -164,7 +183,7 @@ export default {
     ...mapState(useGassStore, ['gass']),
   },
   methods: {
-    ...mapActions(useGassStore, ['deleteGas', 'newGas', 'updateTodo']),
+    ...mapActions(useGassStore, ['deleteGas', 'newGas', 'updateGas']),
 
     confirmDeleteGas(id) {
       (confirm("sei sicuro di cancellare questo gas?")) && this.deleteGas(id)
@@ -174,6 +193,10 @@ export default {
     gassStore.fetchGass()
   },
 }
+// STORE -> prendere un singolo gas con id
+// FORM -> quando clicchi modifica prendi l'id di quello che stai modificando e lo passi allo store /\
+// FORM -> carichi i dati ottenuti nel gaS e poi prendi quella variabile e inserisci i valori nelle text field
+
 // export default {
 //   data: () => ({
 //     search: '',
