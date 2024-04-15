@@ -100,7 +100,7 @@ function add_gas($nome, $descrizione, $via, $civico, $paese, $provincia) {
 function save_gas($id_gas, $nome, $descrizione, $via, $civico, $paese, $provincia) {
     global $db;
 
-    $sql = "UPDATE todoes SET 
+    $sql = "UPDATE gass SET 
                         nome = :nome, 
                         descrizione = :descrizione,
                         via = :via,

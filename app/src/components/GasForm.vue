@@ -30,7 +30,6 @@
     ></v-text-field>
     <v-text-field
         v-model="provincia"
-        :model-value="action ? gas.provincia : ''"
         color="green"
         label="Provincia"
         style="min-height: 96px"
@@ -96,9 +95,24 @@ export default {
         paese: this.paese,
         provincia: this.provincia
       }
+      if(this.action){
+        this.updateGas(this.gas.raw.id_gas, gasOBJ)
+        this.$emit('closed')
+      }else{
         this.newGas(gasOBJ)
         this.$emit('closed')
+      }
     }
   },
+  beforeMount() {
+    if(this.action){
+      this.nome = this.gas.raw.nome
+      this.descrizione = this.gas.raw.descrizione
+      this.via = this.gas.raw.via
+      this.civico = this.gas.raw.civico
+      this.paese = this.gas.raw.paese
+      this.provincia = this.gas.raw.provincia
+    }
+  }
 }
 </script>

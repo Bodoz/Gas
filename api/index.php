@@ -120,8 +120,8 @@ $f3->route(
 $f3->route('PUT /gas/@id',
     function($f3, $params) {
         $data =  json_decode(file_get_contents('php://input'), true);
-        if ($params['id_gas'] > 0 && $data['nome'] != '' && $data['descrizione'] != '' && $data['via'] != '' && $data['civico'] != '' && $data['paese'] != '' && $data['provincia'] != '') {
-            $gas = save_gas($params['id_gas'], $data['nome'], $data['descrizione'], $data['via'], $data['civico'], $data['paese'], $data['provincia']);
+        if ($params['id'] > 0 && $data['nome'] != '' && $data['descrizione'] != '' && $data['via'] != '' && $data['civico'] != '' && $data['paese'] != '' && $data['provincia'] != '') {
+            $gas = save_gas($params['id'], $data['nome'], $data['descrizione'], $data['via'], $data['civico'], $data['paese'], $data['provincia']);
 
             $r = [
                 'result' => true,

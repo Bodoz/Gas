@@ -51,7 +51,7 @@
                     class="text-none mr-1"
                     size="small"
                     color="green"
-                    text="Visualizza"
+                    text="Iscriviti"
                     border
                     flat
                     v-for="i in links"
@@ -76,14 +76,13 @@
                             title="Modifica Gas"
                         >
                           <GasForm
-                              :gas="g"
+                              :gas="gas"
                               :action = "true"
                               @closed="isActive.value = false"
                           ></GasForm>
                         </v-card>
                       </template>
                     </v-dialog>
-
 
                   <v-btn
                       class="text-none mr-1"
