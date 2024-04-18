@@ -48,6 +48,7 @@ export default{
 <template>
   <v-app>
     <v-app-bar>
+      <LoginForm></LoginForm>
       <IconLogo />
       <v-spacer />
       <v-tabs >
@@ -69,7 +70,7 @@ export default{
       <router-view />
     </v-main>
     <v-content>
-      <v-footer absolute>
+      <v-footer class="pa-0" absolute>
         <div class="bg-green d-flex w-100 align-center px-4">
           <IconLogo />
           <v-spacer></v-spacer>
@@ -84,10 +85,5 @@ export default{
         </div>
       </v-footer>
     </v-content>
-    <LoginForm></LoginForm>
   </v-app>
 </template>
-
-<style scoped>
-
-</style>

@@ -10,8 +10,14 @@ export default {
   <v-main>
     <v-row class="h-100 justify-center align-center text-center">
       <v-col>
-        <h1 class="text-amber-lighten-5 text-h2">GasGas.it</h1>
-        <p class="text-amber-lighten-5">Acquista prodotti sani e freschi a KM 0 al giusto prezzo e sostieni l'economia locale</p>
+        <div class="w-100 d-flex justify-center">
+          <div class="w-50 pa-5" style="background-color: rgba(255, 255, 255, 0.7); border-radius: 10px" >
+            <h1 class="text-h2">GasGas.it</h1>
+            <b>
+            <p class="">Acquista prodotti sani e freschi a KM 0 al giusto prezzo </p>
+            </b>
+          </div>
+        </div>
       </v-col>
     </v-row>
   </v-main>

@@ -49,6 +49,9 @@
         </v-form>
         </v-card-text>
         <v-card-actions class="px-10 pb-6">
+          <v-btn
+              variant="elevated"
+          >Registrati</v-btn>
           <v-spacer></v-spacer>
           <v-btn
               type="submit"
@@ -82,6 +85,9 @@ export default {
     valid: false,
     username: '',
     password: '',
+    links: [
+      {to: "/visualizzaGas", text: "visualizzaGas"},
+    ],
     usernameRules: [
       (value) => {
         if (value && value?.trim().length > 0) return true // anche senza value

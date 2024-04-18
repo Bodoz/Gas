@@ -43,17 +43,16 @@
         auto-grow
     ></v-textarea>
     <div class="d-flex justify-end">
+      <v-btn
+          class="me-4"
+          @click="this.$emit('closed')"
+      >Close
+      </v-btn>
     <v-btn
         class="me-4"
         @click="saveGas"
     >
       Save
-    </v-btn>
-
-    <v-btn
-        class="me-4"
-        @click="this.$emit('closed')"
-    >Close
     </v-btn>
     </div>
   </form>

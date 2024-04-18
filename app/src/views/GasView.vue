@@ -30,7 +30,7 @@
                 md="4"
             >
               <v-card class="pb-3" border flat>
-<!--                <v-img :src="gas.raw.img"></v-img>-->
+<!--                <v-img src="https://www.terradiva.it/wp-content/uploads/2020/12/gruppo-spesa-collettiva-a-prezzi-agevolati.png"></v-img>-->
 
                 <v-list-item :subtitle="gas.raw.descrizione" class="mb-2">
                   <template v-slot:title>
@@ -47,17 +47,43 @@
 
                 </div>
                 <div class="float-lg-right">
-                <v-btn
-                    class="text-none mr-1"
-                    size="small"
-                    color="green"
-                    text="Iscriviti"
-                    border
-                    flat
-                    v-for="i in links"
-                    :to="i.to"
-                >
-                </v-btn>
+                    <v-dialog
+                        v-model="dialog"
+                        max-width="400"
+                        persistent
+                    >
+                      <template v-slot:activator="{ props: activatorProps }">
+                        <v-btn v-bind="activatorProps"
+                            class="text-none mr-1"
+                            size="small"
+                            color="green"
+                            text="Iscriviti"
+                            border
+                            flat
+                        ></v-btn>
+                      </template>
+
+                      <v-card
+                          prepend-icon="mdi-leaf-circle"
+                          title="Vuoi iscriverti a questo G.A.S.?"
+                      >
+                        <template v-slot:actions>
+                          <v-spacer></v-spacer>
+
+                          <v-btn
+                              @click="dialog = false"
+                              color="red"
+                              variant="elevated"
+                          >Annulla</v-btn>
+                          <v-btn
+                              @click="dialog = false"
+                              color="green"
+                              variant="elevated"
+                          >Iscriviti</v-btn>
+                        </template>
+                      </v-card>
+                    </v-dialog>
+
                     <v-dialog max-width="500">
                       <template v-slot:activator="{ props: activatorProps }">
                         <v-btn
@@ -83,7 +109,6 @@
                         </v-card>
                       </template>
                     </v-dialog>
-
                   <v-btn
                       class="text-none mr-1"
                       size="small"
@@ -163,6 +188,7 @@ const gassStore = useGassStore()
 export default {
   components: {GasForm},
   data: () => ({
+    dialog: false,
     search: '',
     emptyGas: {
       nome: '',
@@ -174,9 +200,6 @@ export default {
       id_gas: '',
     },
     g: null,
-    links: [
-      {to: "/visualizzaGas", text: "visualizzaGas"},
-    ],
   }),
   computed: {
     ...mapState(useGassStore, ['gass']),
