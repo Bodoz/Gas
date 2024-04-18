@@ -208,7 +208,7 @@ export default {
     ...mapActions(useGassStore, ['deleteGas', 'newGas', 'updateGas']),
 
     confirmDeleteGas(id) {
-      (confirm("sei sicuro di cancellare questo gas?")) && this.deleteGas(id)
+      (confirm("sei sicuro di voler cancellare questo gas?")) && this.deleteGas(id)
     },
   },
   mounted() {

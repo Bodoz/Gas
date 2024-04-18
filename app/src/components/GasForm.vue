@@ -45,13 +45,13 @@
     <div class="d-flex justify-end">
       <v-btn
           class="me-4"
-      >Close
+      >Chiudi
       </v-btn>
     <v-btn
         class="me-4"
         @click="saveGas"
     >
-      Save
+      Salva
     </v-btn>
     </div>
   </form>
