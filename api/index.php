@@ -10,6 +10,30 @@ require_once 'db.php';
 ///  U S E R S
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
+//aggiungere un user
+$f3->route(
+    'POST /user',
+    function ($f3, $params) {
+        $data = json_decode(file_get_contents('php://input'), true);
+        if ($data['username'] != '' and $data['password'] != '' and $data['nome'] != '' and $data['cognome'] != '' and $data['email'] != '' and $data['via'] != '' and $data['cap'] != '' and $data['paese'] != '' and $data['provincia'] != '') {
+            $user = add_user($data['username'], $data['password'], $data['nome'], $data['cognome'], $data['email'], $data['via'], $data['cap'], $data['paese'], $data['provincia']);
+            $r = [
+                'result' => true,
+                'data' => [$user],
+                'msg' => 'Ok'
+            ];
+        } else {
+            $r =  [
+                'result' => false,
+                'data' => [],
+                'msg' => 'Dati forniti non validi'
+            ];
+            http_response_code(400);
+        }
+        echo json_encode($r);
+    }
+);
+
 $f3->route(
     'GET /users/authorized',
     function ($f3, $params) {

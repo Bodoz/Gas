@@ -6,6 +6,7 @@ export const useUsersStore = defineStore("user",{
     state: () => ({
         show_login: true,
         user: null,
+        users: [],
     }),
     actions: {
         async authorize(credentials) {
@@ -31,6 +32,12 @@ export const useUsersStore = defineStore("user",{
                 alert(error)
                 console.log(error)
             }
-        }
+        },
+        async newUser(user) {
+            const data = await axios.post(`api/user/`, user)
+            if(data.data.result){
+                this.users.push(data.data.data[0])
+            }
+        },
     },
 })

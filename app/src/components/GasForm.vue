@@ -45,7 +45,6 @@
     <div class="d-flex justify-end">
       <v-btn
           class="me-4"
-          @click="this.$emit('closed')"
       >Close
       </v-btn>
     <v-btn

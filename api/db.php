@@ -7,6 +7,31 @@ $db = new PDO('sqlite:gasDB');
 ///  U S E R S
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
+function add_user($username, $password, $nome, $cognome, $email, $via, $cap, $paese, $provincia) {
+    global $db;
+
+    $sql = "INSERT INTO users (username, password, nome, cognome, via, cap, paese, provincia) 
+            VALUES (:username, :password, :nome, :cognome, :via, :cap, :paese, :provincia)";
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(':username', $username);
+    $stmt->bindValue(':password', $password);
+    $stmt->bindValue(':nome', $nome);
+    $stmt->bindValue(':cognome', $cognome);
+    $stmt->bindValue(':email', $email);
+    $stmt->bindValue(':via', $via);
+    $stmt->bindValue(':cap', $cap);
+    $stmt->bindValue(':paese', $paese);
+    $stmt->bindValue(':provincia', $provincia);
+
+    $stmt->execute();
+
+    $id = $db->lastInsertId();
+    return get_user($id);
+
+    //TODO Restituire un errore
+}
+
 function get_user($username){
     global $db;
 

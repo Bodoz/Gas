@@ -49,9 +49,7 @@
         </v-form>
         </v-card-text>
         <v-card-actions class="px-10 pb-6">
-          <v-btn
-              variant="elevated"
-          >Registrati</v-btn>
+          <RegisterForm></RegisterForm>
           <v-spacer></v-spacer>
           <v-btn
               type="submit"
@@ -75,19 +73,20 @@
 <script>
 import {mapActions, mapState, mapWritableState} from "pinia";
 import {useUsersStore} from "@/stores/users.js";
+import RegisterForm from "@/components/RegisterForm.vue";
 
 export default {
+  components: {RegisterForm},
   props: {
     show: Boolean,
     visible: false,
   },
   data: () => ({
     valid: false,
+    dialog: false,
     username: '',
     password: '',
-    links: [
-      {to: "/visualizzaGas", text: "visualizzaGas"},
-    ],
+
     usernameRules: [
       (value) => {
         if (value && value?.trim().length > 0) return true // anche senza value

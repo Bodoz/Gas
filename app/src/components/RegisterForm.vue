@@ -1,14 +1,13 @@
 <template>
   <div class="pa-4 text-center">
     <v-dialog
-        v-model="dialog"
         max-width="600"
     >
       <template v-slot:activator="{ props: activatorProps }">
         <v-btn
             class="text-none font-weight-regular"
             prepend-icon="mdi-account"
-            text="Edit Profile"
+            text="Registrati"
             variant="tonal"
             v-bind="activatorProps"
         ></v-btn>
@@ -16,75 +15,29 @@
 
       <v-card
           prepend-icon="mdi-account"
-          title="User Profile"
+          title="Registrati!"
       >
         <v-card-text>
           <v-row dense>
             <v-col
                 cols="12"
-                md="4"
                 sm="6"
             >
               <v-text-field
-                  label="First name*"
+                  label="Username"
                   required
               ></v-text-field>
             </v-col>
 
             <v-col
                 cols="12"
-                md="4"
                 sm="6"
             >
               <v-text-field
-                  hint="example of helper text only on focus"
-                  label="Middle name"
-              ></v-text-field>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-                sm="6"
-            >
-              <v-text-field
-                  hint="example of persistent helper text"
-                  label="Last name*"
-                  persistent-hint
-                  required
-              ></v-text-field>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-                sm="6"
-            >
-              <v-text-field
-                  label="Email*"
-                  required
-              ></v-text-field>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-                sm="6"
-            >
-              <v-text-field
-                  label="Password*"
-                  type="password"
-                  required
-              ></v-text-field>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-                sm="6"
-            >
-              <v-text-field
-                  label="Confirm Password*"
+                  label="Password"
+                  :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                  :type="visible ? 'text' : 'password'"
+                  @click:append-inner="visible = !visible"
                   type="password"
                   required
               ></v-text-field>
@@ -94,27 +47,72 @@
                 cols="12"
                 sm="6"
             >
-              <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Age*"
+              <v-text-field
+                  label="Nome"
                   required
-              ></v-select>
+              ></v-text-field>
             </v-col>
 
             <v-col
                 cols="12"
                 sm="6"
             >
-              <v-autocomplete
-                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                  label="Interests"
-                  auto-select-first
-                  multiple
-              ></v-autocomplete>
+              <v-text-field
+                  label="Cognome"
+                  required
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+                cols="12"
+                sm="6"
+            >
+              <v-text-field
+                  label="Email"
+                  required
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+                cols="12"
+                sm="6"
+            >
+              <v-text-field
+                  label="Via"
+                  required
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+                cols="12"
+                sm="6"
+            >
+              <v-text-field
+                  label="CAP"
+                  required
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+                cols="12"
+                sm="6"
+            >
+              <v-text-field
+                  label="Paese"
+                  required
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+                cols="12"
+                sm="6"
+            >
+              <v-text-field
+                  label="Provincia"
+                  required
+              ></v-text-field>
             </v-col>
           </v-row>
-
-          <small class="text-caption text-medium-emphasis">*indicates required field</small>
         </v-card-text>
 
         <v-divider></v-divider>
@@ -123,16 +121,15 @@
           <v-spacer></v-spacer>
 
           <v-btn
-              text="Close"
+              text="Chiudi"
               variant="plain"
-              @click="dialog = false"
           ></v-btn>
 
           <v-btn
               color="primary"
-              text="Save"
+              text="Registrati"
               variant="tonal"
-              @click="dialog = false"
+              @click="saveUser"
           ></v-btn>
         </v-card-actions>
       </v-card>
@@ -141,9 +138,44 @@
 </template>
 
 <script>
+import {mapActions, mapState, mapWritableState} from "pinia";
+import {useUsersStore} from "@/stores/users.js";
+import {useGassStore} from "@/stores/gas.js";
 export default {
-  data: () => ({
-    dialog: false,
-  }),
+  data() {
+    return {
+      username: "",
+      password: "",
+      nome: "",
+      cognome: "",
+      email: "",
+      via: "",
+      cap: "",
+      paese: "",
+      provincia: ""
+    }
+  },
+  emits: ['closed'],
+  props: {
+    show: Boolean,
+    visible: false,
+  },
+  computed: {
+    ...mapState(useUsersStore, ['users']),
+  },
+  methods: {
+    ...mapActions(useUsersStore, ['newUser']),
+    saveUser(){
+      let userOBJ = {
+        nome: this.nome,
+        descrizione: this.descrizione,
+        via: this.via,
+        civico: this.civico,
+        paese: this.paese,
+        provincia: this.provincia
+      }
+        this.newUser(userOBJ)
+    }
+  },
 }
 </script>
