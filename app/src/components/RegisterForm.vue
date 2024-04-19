@@ -167,10 +167,13 @@ export default {
     ...mapActions(useUsersStore, ['newUser']),
     saveUser(){
       let userOBJ = {
+        username: this.username,
+        password: this.password,
         nome: this.nome,
-        descrizione: this.descrizione,
+        cognome: this.cognome,
+        email: this.email,
         via: this.via,
-        civico: this.civico,
+        cap: this.cap,
         paese: this.paese,
         provincia: this.provincia
       }

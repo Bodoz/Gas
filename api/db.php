@@ -10,8 +10,8 @@ $db = new PDO('sqlite:gasDB');
 function add_user($username, $password, $nome, $cognome, $email, $via, $cap, $paese, $provincia) {
     global $db;
 
-    $sql = "INSERT INTO users (username, password, nome, cognome, via, cap, paese, provincia) 
-            VALUES (:username, :password, :nome, :cognome, :via, :cap, :paese, :provincia)";
+    $sql = "INSERT INTO users (username, password, nome, cognome, email, via, cap, paese, provincia)
+            VALUES (:username, :password, :nome, :cognome, :email :via, :cap, :paese, :provincia)";
     $stmt = $db->prepare($sql);
 
     $stmt->bindValue(':username', $username);

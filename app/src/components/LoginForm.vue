@@ -105,7 +105,7 @@ export default {
     ...mapWritableState(useUsersStore, ['show_login']),
   },
   methods: {
-    ...mapActions(useUsersStore, ['authorize']),
+    ...mapActions(useUsersStore, ['authorize', 'newUser']),
     login(){
       if(this.valid){
         this.authorize({username: this.username, password: this.password})
