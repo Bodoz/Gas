@@ -55,14 +55,14 @@
               type="submit"
               variant="elevated"
               class="px-4 mr-3"
-              @click="cancel"
+              @click="cancel(); username = ''; password = ''"
           >Annulla</v-btn>
           <v-btn
               type="submit"
               color="primary"
               variant="elevated"
               class="px-4"
-              @click="login"
+              @click="login(); username = ''; password = ''"
               :disabled="!valid"
           >Login</v-btn>
         </v-card-actions>

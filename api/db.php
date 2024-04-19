@@ -11,11 +11,11 @@ function add_user($username, $password, $nome, $cognome, $email, $via, $cap, $pa
     global $db;
 
     $sql = "INSERT INTO users (username, password, nome, cognome, email, via, cap, paese, provincia)
-            VALUES (:username, :password, :nome, :cognome, :email :via, :cap, :paese, :provincia)";
+            VALUES (:username, :password, :nome, :cognome, :email, :via, :cap, :paese, :provincia)";
     $stmt = $db->prepare($sql);
 
     $stmt->bindValue(':username', $username);
-    $stmt->bindValue(':password', $password);
+    $stmt->bindValue(':password', md5($password));
     $stmt->bindValue(':nome', $nome);
     $stmt->bindValue(':cognome', $cognome);
     $stmt->bindValue(':email', $email);
@@ -32,7 +32,30 @@ function add_user($username, $password, $nome, $cognome, $email, $via, $cap, $pa
     //TODO Restituire un errore
 }
 
-function get_user($username){
+function get_user($id){
+    global $db;
+
+    $sql = "SELECT * FROM users WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if($user) {
+        $sql = "SELECT * FROM roles R 
+            LEFT JOIN user_roles UR ON UR.role_id = R.id
+            WHERE UR.user_id = :user_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user['id']);
+        $stmt->execute();
+        $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $user['roles'] = $roles;
+    }
+
+    return $user;
+}
+
+function get_user_username($username){
     global $db;
 
     $sql = "SELECT * FROM users WHERE username = :username";
@@ -54,7 +77,6 @@ function get_user($username){
 
     return $user;
 }
-
 function get_users(){
     global $db;
 

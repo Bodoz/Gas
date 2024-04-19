@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 
 import axios from "axios"
+import iconLogo from "@/components/icons/IconLogo.vue";
 
 export const useUsersStore = defineStore("user",{
     state: () => ({
@@ -34,7 +35,8 @@ export const useUsersStore = defineStore("user",{
             }
         },
         async newUser(user) {
-            const data = await axios.post(`api/user/`, user)
+            console.log(user)
+            const data = await axios.post('api/user/', user)
             if(data.data.result){
                 this.users.push(data.data.data[0])
             }

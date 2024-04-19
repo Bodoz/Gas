@@ -59,7 +59,7 @@ $f3->route(
     function ($f3, $params) {
         $data = json_decode(file_get_contents('php://input'), true);
         if ($data && $data['username'] != '' && $data['password'] != '') {
-            $user = get_user($data['username']);
+            $user = get_user_username($data['username']);
             if ($user && md5($data['password']) == $user['password']) {
                 unset($user['password']);
                 $r = [

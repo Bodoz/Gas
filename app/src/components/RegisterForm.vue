@@ -1,7 +1,9 @@
 <template>
   <div class="pa-4 text-center">
     <v-dialog
+        v-model="dialog"
         max-width="600"
+        persistent
     >
       <template v-slot:activator="{ props: activatorProps }">
         <v-btn
@@ -24,6 +26,7 @@
                 sm="6"
             >
               <v-text-field
+                  v-model="username"
                   label="Username"
                   required
               ></v-text-field>
@@ -34,6 +37,7 @@
                 sm="6"
             >
               <v-text-field
+                  v-model="password"
                   label="Password"
                   :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
                   :type="visible ? 'text' : 'password'"
@@ -48,6 +52,7 @@
                 sm="6"
             >
               <v-text-field
+                  v-model="nome"
                   label="Nome"
                   required
               ></v-text-field>
@@ -58,6 +63,7 @@
                 sm="6"
             >
               <v-text-field
+                  v-model="cognome"
                   label="Cognome"
                   required
               ></v-text-field>
@@ -68,6 +74,7 @@
                 sm="6"
             >
               <v-text-field
+                  v-model="email"
                   label="Email"
                   required
               ></v-text-field>
@@ -78,6 +85,7 @@
                 sm="6"
             >
               <v-text-field
+                  v-model="via"
                   label="Via"
                   required
               ></v-text-field>
@@ -88,6 +96,7 @@
                 sm="6"
             >
               <v-text-field
+                  v-model="cap"
                   label="CAP"
                   required
               ></v-text-field>
@@ -98,6 +107,7 @@
                 sm="6"
             >
               <v-text-field
+                  v-model="paese"
                   label="Paese"
                   required
               ></v-text-field>
@@ -108,6 +118,7 @@
                 sm="6"
             >
               <v-text-field
+                  v-model="provincia"
                   label="Provincia"
                   required
               ></v-text-field>
@@ -123,13 +134,14 @@
           <v-btn
               text="Chiudi"
               variant="plain"
+              @click="dialog=false"
           ></v-btn>
 
           <v-btn
               color="primary"
               text="Registrati"
               variant="tonal"
-              @click="saveUser"
+              @click="saveUser(); dialog=false"
           ></v-btn>
         </v-card-actions>
       </v-card>
@@ -152,7 +164,8 @@ export default {
       via: "",
       cap: "",
       paese: "",
-      provincia: ""
+      provincia: "",
+      dialog: false,
     }
   },
   emits: ['closed'],
