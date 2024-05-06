@@ -36,7 +36,7 @@
         ponendo l'accento sull'importanza di un'agricoltura rispettosa dell'ambiente e sulla valorizzazione
         del territorio.</p>
         <br>
-        Unisciti a noi nel nostro viaggio verso un futuro più sostenibile e equo!
+        <p class="font-weight-black">Unisciti a noi nel nostro viaggio verso un futuro più sostenibile e equo!</p>
       </div>
     </v-main>
   </v-layout>

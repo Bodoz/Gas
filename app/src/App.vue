@@ -25,6 +25,9 @@ export default{
     logged() {
       return this.user ? "Logout" : "Login"
     },
+    welcome(){
+      return this.user ? "Bentornato "+ this.user.username + " 😃" : ""
+    },
     ...mapState(useUsersStore, ['user']),
     ...mapWritableState(useUsersStore, ['show_login']),
   },
@@ -52,6 +55,9 @@ export default{
       <IconLogo />
       <v-spacer />
       <v-tabs >
+        <v-text
+            class="mr-3 mt-4 font-weight-black"
+        >{{ welcome }}</v-text>
         <v-tab
             color="indigo"
             elevation="7"

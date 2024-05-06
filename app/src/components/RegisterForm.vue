@@ -52,6 +52,21 @@
                 sm="6"
             >
               <v-text-field
+                  v-model="confirm_password"
+                  label="Conferma Password"
+                  :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                  :type="visible ? 'text' : 'conferma password'"
+                  @click:append-inner="visible = !visible"
+                  type="password"
+                  required
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+                cols="12"
+                sm="6"
+            >
+              <v-text-field
                   v-model="nome"
                   label="Nome"
                   required
@@ -158,6 +173,7 @@ export default {
     return {
       username: "",
       password: "",
+      confirm_password: "",
       nome: "",
       cognome: "",
       email: "",
