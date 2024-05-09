@@ -54,7 +54,7 @@ export default{
       <LoginForm></LoginForm>
       <IconLogo />
       <v-spacer />
-      <v-tabs >
+      <v-tabs>
         <v-text
             class="mr-3 mt-4 font-weight-black"
         >{{ welcome }}</v-text>

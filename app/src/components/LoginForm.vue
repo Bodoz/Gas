@@ -1,16 +1,16 @@
 <template>
-  <div class="pa-4 text-center">
+  <div class="pa-4 text-center ">
     <v-dialog
         max-width="600"
         persistent
         v-model="show_login"
     >
       <v-card
-          prepend-icon="mdi-account"
+          prepend-icon="mdi-login"
           title="Login"
       >
         <v-card-text>
-        <v-form v-model="valid">
+        <v-form v-model="valid" >
           <v-container>
             <v-row>
               <v-col
