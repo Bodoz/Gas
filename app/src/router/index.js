@@ -35,6 +35,16 @@ const router = createRouter({
       path: '/registrati',
       name: 'Registrati',
       component: () => import('../views/RegistratiView.vue')
+    },
+    {
+      path: '/userTab',
+      name: 'Users',
+      component: () => import('../views/UserTable.vue')
+    },
+    {
+      path: '/gasTab',
+      name: 'Gass',
+      component: () => import('../views/GasTable.vue')
     }
   ]
 })

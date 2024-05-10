@@ -3,6 +3,7 @@ import IconLogo from "@/components/icons/IconLogo.vue";
 import LoginForm from "@/components/LoginForm.vue"
 import {mapActions, mapState, mapWritableState} from "pinia";
 import {useUsersStore} from "@/stores/users.js";
+import router from "@/router/index.js";
 
 export default{
   components: {IconLogo, LoginForm},
@@ -30,20 +31,25 @@ export default{
     },
     ...mapState(useUsersStore, ['user']),
     ...mapWritableState(useUsersStore, ['show_login']),
+    ...mapWritableState(useUsersStore, ['isAdmin']),
   },
   methods: {
+    router() {
+      return router
+    },
     ...mapActions(useUsersStore, ['authorized', 'authorize']),
 
     login() {
       if (this.user){
         this.authorize()
+        this.isAdmin = false
       } else {
         this.show_login = true
       }
     },
   },
   beforeMount() {
-    this.authorized()
+    this.authorized() //verifica user
   }
 }
 </script>
@@ -52,12 +58,35 @@ export default{
   <v-app>
     <v-app-bar>
       <LoginForm></LoginForm>
-      <IconLogo />
+      <IconLogo src="src/assets/logo.svg" @click="$router.push('/')"/>
       <v-spacer />
+      <v-text
+          class="mr-3 mt-4 font-weight-black"
+      >{{ welcome }}</v-text>
+        <v-menu
+            open-on-hover
+            v-if="isAdmin"
+        >
+        <template v-slot:activator="{ props }">
+          <v-btn
+              classs="mr-4"
+              v-bind="props"
+          >
+            <span>tables</span>
+          </v-btn>
+        </template>
+
+        <v-list>
+            <v-list-item to="/userTab">
+              <v-list-item-title>Users</v-list-item-title>
+            </v-list-item>
+          <v-list-item to="/gasTab">
+            <v-list-item-title>Gass</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
       <v-tabs>
-        <v-text
-            class="mr-3 mt-4 font-weight-black"
-        >{{ welcome }}</v-text>
+
         <v-tab
             color="indigo"
             elevation="7"

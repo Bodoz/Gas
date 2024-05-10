@@ -8,15 +8,18 @@ export const useUsersStore = defineStore("user",{
         show_login: true,
         user: null,
         users: [],
+        isAdmin: false
     }),
     actions: {
         async authorize(credentials) {
             console.log(credentials)
             try{
                 const data = await axios.post('api/users/authorize', credentials)
-                let user = data.data.data
-                console.log(data.data)
-                this.user = user
+                this.user = data.data.data
+                if(this.user && this.user['role'] === 1){
+                    this.isAdmin = true
+                }
+                console.log(this.isAdmin)
                 this.show_login = false
             } catch(error) {
                 alert(error)
