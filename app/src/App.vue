@@ -71,8 +71,10 @@ export default{
           <v-btn
               classs="mr-4"
               v-bind="props"
+              rounded="xl"
+              size="x-large"
           >
-            <span>tables</span>
+            <span>Tabelle</span>
           </v-btn>
         </template>
 
@@ -107,7 +109,7 @@ export default{
     <v-content>
       <v-footer class="pa-0" absolute>
         <div class="bg-green d-flex w-100 align-center px-4">
-          <IconLogo />
+          <IconLogo src="src/assets/logo.svg" @click="$router.push('/')"/>
           <v-spacer></v-spacer>
           <v-btn
               v-for="icon in icons"
