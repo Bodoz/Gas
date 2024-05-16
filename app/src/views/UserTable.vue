@@ -73,7 +73,7 @@ export default {
   data: () => ({
     dialog: false,
     search: '',
-    emptyGas: {
+    emptyUser: {
       username: '',
       password: '',
       nome: '',
