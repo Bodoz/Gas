@@ -37,11 +37,29 @@ export const useUsersStore = defineStore("user",{
                 console.log(error)
             }
         },
+        async fetchUsers() {
+            try{
+                const data = await axios.get('api/user')
+                let user = data.data.data
+                this.user = user
+                console.log(user)
+            } catch(error) {
+                alert(error)
+                console.log(error)
+            }
+        },
         async newUser(user) {
             console.log(user)
             const data = await axios.post('api/user/', user)
             if(data.data.result){
                 this.users.push(data.data.data[0])
+            }
+        },
+        async deleteUser(id){
+            const data = await axios.delete(`api/users/${id}`)
+            console.log(data.data)
+            if (data.data.result) {
+                this.users = this.users.filter(x => x.id !== id)
             }
         },
     },

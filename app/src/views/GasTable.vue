@@ -1,32 +1,29 @@
 <template>
-  <v-table
-      height="300px"
-      fixed-header
-  >
+  <v-table class="ma-4 mr-4 border-opacity-100 border">
     <thead>
-    <tr>
-      <th class="text-left elevation-7 v-color-picker" >
+    <tr class="text-center elevation-7" >
+      <th class="border">
         id_gas
       </th>
-      <th class="text-left elevation-7 v-color-picker" >
+      <th class="border ">
         nome
       </th>
-      <th class="text-left elevation-7 v-color-picker" >
+      <th class="border">
         descrizione
       </th>
-      <th class="text-left elevation-7 v-color-picker" >
+      <th class="border">
         via
       </th>
-      <th class="text-left elevation-7 v-color-picker" >
+      <th class="border">
         civico
       </th>
-      <th class="text-left elevation-7 v-color-picker" >
+      <th class="border">
         paese
       </th>
-      <th class="text-left elevation-7 v-color-picker" >
+      <th class="border">
         provincia
       </th>
-      <th class="text-left elevation-7">
+      <th class="border">
         Azioni
       </th>
     </tr>

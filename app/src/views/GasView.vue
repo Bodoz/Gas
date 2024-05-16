@@ -215,9 +215,6 @@ export default {
     gassStore.fetchGass()
   },
 }
-// STORE -> prendere un singolo gas con id
-// FORM -> quando clicchi modifica prendi l'id di quello che stai modificando e lo passi allo store /\
-// FORM -> carichi i dati ottenuti nel gaS e poi prendi quella variabile e inserisci i valori nelle text field
 
 // export default {
 //   data: () => ({

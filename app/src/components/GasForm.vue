@@ -95,7 +95,7 @@ export default {
         provincia: this.provincia
       }
       if(this.action){
-        this.updateGas(this.gas.raw.id_gas, gasOBJ)
+        this.updateGas(this.gas.id_gas, gasOBJ)
         this.$emit('closed')
       }else{
         this.newGas(gasOBJ)
@@ -105,12 +105,12 @@ export default {
   },
   beforeMount() {
     if(this.action){
-      this.nome = this.gas.raw.nome
-      this.descrizione = this.gas.raw.descrizione
-      this.via = this.gas.raw.via
-      this.civico = this.gas.raw.civico
-      this.paese = this.gas.raw.paese
-      this.provincia = this.gas.raw.provincia
+      this.nome = this.gas.nome
+      this.descrizione = this.gas.descrizione
+      this.via = this.gas.via
+      this.civico = this.gas.civico
+      this.paese = this.gas.paese
+      this.provincia = this.gas.provincia
     }
   }
 }

@@ -1,99 +1,103 @@
-<!--<template>-->
-<!--  <v-table-->
-<!--      height="300px"-->
-<!--      fixed-header-->
-<!--  >-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--      <th class="text-left elevation-7 v-color-picker" >-->
-<!--        id-->
-<!--      </th>-->
-<!--      <th class="text-left elevation-7 v-color-picker" >-->
-<!--        username-->
-<!--      </th>-->
-<!--      <th class="text-left elevation-7 v-color-picker" >-->
-<!--        password-->
-<!--      </th>-->
-<!--      <th class="text-left elevation-7 v-color-picker" >-->
-<!--        nome-->
-<!--      </th>-->
-<!--      <th class="text-left elevation-7 v-color-picker" >-->
-<!--        cognome-->
-<!--      </th>-->
-<!--      <th class="text-left elevation-7 v-color-picker" >-->
-<!--        email-->
-<!--      </th>-->
-<!--      <th class="text-left elevation-7 v-color-picker" >-->
-<!--        via-->
-<!--      </th>-->
-<!--      <th class="text-left elevation-7 v-color-picker" >-->
-<!--        cap-->
-<!--      </th>-->
-<!--      <th class="text-left elevation-7 v-color-picker" >-->
-<!--        paese-->
-<!--      </th>-->
-<!--      <th class="text-left elevation-7 v-color-picker" >-->
-<!--        provincia-->
-<!--      </th>-->
-<!--      <th class="text-left elevation-7">-->
-<!--        ruolo-->
-<!--      </th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr-->
-<!--        v-for="user in users"-->
-<!--        :key="user.id"-->
-<!--    >-->
-<!--      <td>{{ user.id }}</td>-->
-<!--      <td>{{ user.username }}</td>-->
-<!--      <td>{{ user.password }}</td>-->
-<!--      <td>{{ user.nome }}</td>-->
-<!--      <td>{{ user.cognome }}</td>-->
-<!--      <td>{{ user.email }}</td>-->
-<!--      <td>{{ user.via }}</td>-->
-<!--      <td>{{ user.cap }}</td>-->
-<!--      <td>{{ user.paese }}</td>-->
-<!--      <td>{{ user.provincia }}</td>-->
-<!--      <td>-->
-<!--        <v-btn>modifica</v-btn>-->
-<!--        <v-btn>elimina</v-btn>-->
-<!--      </td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--  </v-table>-->
-<!--</template>-->
+<template>
+  <v-table class="ma-4 mr-4 border-opacity-100 border">
+    <thead>
+    <tr class="text-center elevation-7" >
+      <th class="border">
+        id
+      </th>
+      <th class="border ">
+        Username
+      </th>
+      <th class="border ">
+        Password
+      </th>
+      <th class="border ">
+        Nome
+      </th>
+      <th class="border">
+        Cognome
+      </th>
+      <th class="border ">
+        E-mail
+      </th>
+      <th class="border">
+        via
+      </th>
+      <th class="border">
+        C.A.P.
+      </th>
+      <th class="border">
+        paese
+      </th>
+      <th class="border">
+        provincia
+      </th>
+      <th class="border">
+        Azioni
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+        v-for="user in users"
+        :key="user.id"
+    >
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.password }}</td>
+      <td>{{ user.nome }}</td>
+      <td>{{ user.cognome }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.via }}</td>
+      <td>{{ user.cap }}</td>
+      <td>{{ user.paese }}</td>
+      <td>{{ user.provincia }}</td>
+      <td>
+        <v-btn>ciao</v-btn>
+        <v-btn>ooo</v-btn>
+      </td>
+    </tr>
+    </tbody>
+  </v-table>
+</template>
 
-<!--<script>-->
-<!--import {mapState, mapActions} from "pinia";-->
-<!--import {useUsersStore} from "@/stores/users.js";-->
+<script>
+import {mapState, mapActions} from "pinia";
+import {useUsersStore} from "@/stores/users.js";
+import RegisterForm from "@/components/RegisterForm.vue";
 
-<!--const userStore = useUsersStore()-->
+const usersStore = useUsersStore()
 
-<!--export default {-->
-<!--  data: () => ({-->
-<!--    emptyUser: {-->
-<!--      nome: '',-->
-<!--      descrizione: '',-->
-<!--      via: '',-->
-<!--      civico: '',-->
-<!--      paese: '',-->
-<!--      provincia: '',-->
-<!--      id_gas: '',-->
-<!--    },-->
-<!--    g: null,-->
-<!--  }),-->
-<!--  computed: {-->
-<!--    ...mapState(useUsersStore, ['users']),-->
-<!--  },-->
-<!--  methods: {-->
-<!--    ...mapActions(useUsersStore, ['deleteGas', 'newGas', 'updateGas']),-->
+export default {
+  components: {RegisterForm},
+  data: () => ({
+    dialog: false,
+    search: '',
+    emptyGas: {
+      username: '',
+      password: '',
+      nome: '',
+      cognome: '',
+      via: '',
+      cap: '',
+      paese: '',
+      provincia: '',
+      id: '',
+    },
+    g: null,
+  }),
+  computed: {
+    ...mapState(useUsersStore, ['users']),
+  },
+  methods: {
+    ...mapActions(useUsersStore, ['deleteUser', 'newUser']),
 
-<!--  },-->
-<!--  mounted() {-->
-<!--    userStore.fetchGass()-->
-<!--  },-->
-<!--}-->
-<!--</script>-->
-<template></template>
-<script></script>
+    confirmDeleteUser(id) {
+      (confirm("sei sicuro di voler cancellare questo utente?")) && this.deleteUser(id)
+    },
+  },
+  mounted() {
+    usersStore.fetchUsers()
+  },
+}
+</script>

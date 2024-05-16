@@ -100,6 +100,30 @@ $f3 -> route(
     }
 );
 
+//Eliminare un utente
+$f3->route(
+    'DELETE /users/@id',
+    function ($f3, $params) {
+        $user = get_user($params['id']);
+        del_user($params['id']);
+        if ($user) {
+            $r =  [
+                'result' => true,
+                'data' => [$user],
+                'msg' => 'Ok'
+            ];
+        } else {
+            $r =  [
+                'result' => false,
+                'data' => [],
+                'msg' => 'Ko'
+            ];
+            http_response_code(404);
+        }
+        echo json_encode($r);
+    }
+);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///  G A S
 //////////////////////////////////////////////////////////////////////////////////////////////////

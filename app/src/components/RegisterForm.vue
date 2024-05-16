@@ -167,7 +167,6 @@
 <script>
 import {mapActions, mapState, mapWritableState} from "pinia";
 import {useUsersStore} from "@/stores/users.js";
-import {useGassStore} from "@/stores/gas.js";
 export default {
   data() {
     return {
