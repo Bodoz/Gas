@@ -25,6 +25,7 @@
       </th>
       <th class="border">
         Azioni
+        <v-btn class="ml-5" color="green">Aggiungi</v-btn>
       </th>
     </tr>
     </thead>

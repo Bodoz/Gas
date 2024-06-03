@@ -26,8 +26,9 @@ export const useGassStore = defineStore("gas",{
         async updateGas(id_gas, gas) {
             let ix = this.gass.findIndex(x => x.id_gas === id_gas)
             const data = await axios.put(`api/gas/${id_gas}`, gas)
-            this.gass.splice(ix, 1)
-            this.gass.splice(ix, 0 , gas)
+            // this.gass.splice(ix, 1)
+            // this.gass.splice(ix, 0 , gas)
+            this.gass[ix] = data.data.data
         },
         async deleteGas(id_gas){
             const data = await axios.delete(`api/gas/${id_gas}`)

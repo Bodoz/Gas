@@ -34,6 +34,7 @@
       </th>
       <th class="border">
         Azioni
+        <v-btn class="ml-5" color="green">Aggiungi</v-btn>
       </th>
     </tr>
     </thead>
@@ -53,8 +54,41 @@
       <td>{{ user.paese }}</td>
       <td>{{ user.provincia }}</td>
       <td>
-        <v-btn>ciao</v-btn>
-        <v-btn>ooo</v-btn>
+        <v-dialog max-width="500">
+          <template v-slot:activator="{ props: activatorProps }">
+            <v-btn
+                v-bind="activatorProps"
+                class="text-none mr-1"
+                size="small"
+                color="yellow"
+                text="Modifica"
+                border
+                flat
+            ></v-btn>
+          </template>
+
+          <template v-slot:default="{ isActive }">
+            <v-card
+                title="Modifica User"
+            >
+              <UserForm
+                  :user="user"
+                  :action = "true"
+                  @closed="isActive.value = false"
+              ></UserForm>
+            </v-card>
+          </template>
+        </v-dialog>
+
+        <v-btn
+            class="text-none mr-1"
+            size="small"
+            color="red"
+            text="Elimina"
+            border
+            flat
+            @click.stop="confirmDeleteUser(user.id)"
+        ></v-btn>
       </td>
     </tr>
     </tbody>
@@ -65,11 +99,12 @@
 import {mapState, mapActions} from "pinia";
 import {useUsersStore} from "@/stores/users.js";
 import RegisterForm from "@/components/RegisterForm.vue";
+import UserForm from "@/components/UserForm.vue";
 
 const usersStore = useUsersStore()
 
 export default {
-  components: {RegisterForm},
+  components: {UserForm, RegisterForm},
   data: () => ({
     dialog: false,
     search: '',
@@ -84,7 +119,7 @@ export default {
       provincia: '',
       id: '',
     },
-    g: null,
+    u: null,
   }),
   computed: {
     ...mapState(useUsersStore, ['users']),

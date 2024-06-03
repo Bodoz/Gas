@@ -96,6 +96,38 @@ function del_user($id) {
     $stmt->execute();
 }
 
+function save_user($id, $username, $password, $nome, $cognome, $email, $via, $cap, $paese, $provincia) {
+    global $db;
+
+    $sql = "UPDATE users SET 
+                        username = :username, 
+                        password = :password, 
+                        nome = :nome, 
+                        cognome = :cognome,
+                        email = :email,
+                        via = :via,
+                        cap = :cap,
+                        paese = :paese,
+                        provincia = :provincia
+                        WHERE id = :id;";
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(':id', $id);
+    $stmt->bindValue(':username', $username);
+    $stmt->bindValue(':password', md5($password));
+    $stmt->bindValue(':nome', $nome);
+    $stmt->bindValue(':cognome', $cognome);
+    $stmt->bindValue(':email', $email);
+    $stmt->bindValue(':via', $via);
+    $stmt->bindValue(':cap', $cap);
+    $stmt->bindValue(':paese', $paese);
+    $stmt->bindValue(':provincia', $provincia);
+
+    $stmt->execute();
+
+    return get_user($id);
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///  G A S
 //////////////////////////////////////////////////////////////////////////////////////////////////

@@ -60,6 +60,7 @@ $f3->route(
         $data = json_decode(file_get_contents('php://input'), true);
         if ($data && $data['username'] != '' && $data['password'] != '') {
             $user = get_user_username($data['username']);
+
             if ($user && md5($data['password']) == $user['password']) {
                 unset($user['password']);
                 $r = [
@@ -124,6 +125,31 @@ $f3->route(
     }
 );
 
+// Modificare un user
+$f3->route('PUT /user/@id',
+    function($f3, $params) {
+        $data =  json_decode(file_get_contents('php://input'), true);
+        if ($params['id'] > 0 && $data['username'] != '' && $data['password'] != '' && $data['nome'] != '' && $data['cognome'] != '' && $data['email'] != '' && $data['via'] != '' && $data['cap'] != '' && $data['paese'] != '' && $data['provincia'] != '') {
+            $user = save_user($params['id'], $data['username'], $data['password'], $data['nome'], $data['cognome'], $data['email'], $data['via'], $data['cap'], $data['paese'], $data['provincia']);
+
+            $r = [
+                'result' => true,
+                'data' => $user,
+                'msg' => 'Correct'
+            ];
+            http_response_code(201);
+        } else {
+            $r = [
+                'result' => false,
+                'data' => [null],
+                'msg' => 'Error'
+            ];
+            http_response_code(400);
+        }
+        echo json_encode($r);
+    }
+);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///  G A S
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -173,7 +199,7 @@ $f3->route('PUT /gas/@id',
 
             $r = [
                 'result' => true,
-                'data' => [$gas],
+                'data' => $gas,
                 'msg' => 'Correct'
             ];
             http_response_code(201);

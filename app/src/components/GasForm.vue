@@ -81,7 +81,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(useGassStore, ['gass', 'gas']),
+    ...mapState(useGassStore, ['gass']),
   },
   methods: {
     ...mapActions(useGassStore, ['newGas', 'updateGas']),

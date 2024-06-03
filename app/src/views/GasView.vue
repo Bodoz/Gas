@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card v-if="false">
     <v-data-iterator
         :items="gass"
         :items-per-page="3"

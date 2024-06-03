@@ -1,7 +1,6 @@
 import {defineStore} from "pinia";
 
 import axios from "axios"
-import iconLogo from "@/components/icons/IconLogo.vue";
 
 export const useUsersStore = defineStore("user",{
     state: () => ({
@@ -11,6 +10,17 @@ export const useUsersStore = defineStore("user",{
         isAdmin: false
     }),
     actions: {
+        async fetchUsers() {
+            try{
+                const data = await axios.get('api/users')
+                let users = data.data.data
+                this.users = users
+                console.log(users)
+            } catch(error) {
+                alert(error)
+                console.log(error)
+            }
+        },
         async authorize(credentials) {
             console.log(credentials)
             try{
@@ -37,23 +47,17 @@ export const useUsersStore = defineStore("user",{
                 console.log(error)
             }
         },
-        async fetchUsers() {
-            try{
-                const data = await axios.get('api/user')
-                let user = data.data.data
-                this.user = user
-                console.log(user)
-            } catch(error) {
-                alert(error)
-                console.log(error)
-            }
-        },
         async newUser(user) {
             console.log(user)
             const data = await axios.post('api/user/', user)
             if(data.data.result){
                 this.users.push(data.data.data[0])
             }
+        },
+        async updateUser(id, user) {
+            let ix = this.users.findIndex(x => x.id === id)
+            const data = await axios.put(`api/user/${id}`, user)
+            this.users[ix] = data.data.data
         },
         async deleteUser(id){
             const data = await axios.delete(`api/users/${id}`)
