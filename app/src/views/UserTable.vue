@@ -34,7 +34,27 @@
       </th>
       <th class="border">
         Azioni
-        <v-btn class="ml-5" color="green">Aggiungi</v-btn>
+        <v-dialog max-width="500">
+          <template v-slot:activator="{ props: activatorProps }">
+            <v-btn
+                v-bind="activatorProps"
+                class="text-none ml-5"
+                text="Aggiungi"
+                border
+                flat
+                color="green"
+            ></v-btn>
+          </template>
+
+          <template v-slot:default="{ isActive }">
+            <v-card
+                title="Nuovo Utente">
+              <UserForm
+                  @closed="isActive.value = false"
+              ></UserForm>
+            </v-card>
+          </template>
+        </v-dialog>
       </th>
     </tr>
     </thead>
@@ -100,11 +120,12 @@ import {mapState, mapActions} from "pinia";
 import {useUsersStore} from "@/stores/users.js";
 import RegisterForm from "@/components/RegisterForm.vue";
 import UserForm from "@/components/UserForm.vue";
+import GasForm from "@/components/GasForm.vue";
 
 const usersStore = useUsersStore()
 
 export default {
-  components: {UserForm, RegisterForm},
+  components: {GasForm, UserForm, RegisterForm},
   data: () => ({
     dialog: false,
     search: '',

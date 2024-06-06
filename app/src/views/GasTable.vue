@@ -25,7 +25,27 @@
       </th>
       <th class="border">
         Azioni
-        <v-btn class="ml-5" color="green">Aggiungi</v-btn>
+        <v-dialog max-width="500">
+          <template v-slot:activator="{ props: activatorProps }">
+            <v-btn
+                v-bind="activatorProps"
+                class="text-none ml-5"
+                text="Aggiungi"
+                border
+                flat
+                color="green"
+            ></v-btn>
+          </template>
+
+          <template v-slot:default="{ isActive }">
+            <v-card
+                title="Nuovo Gas">
+              <GasForm
+                  @closed="isActive.value = false"
+              ></GasForm>
+            </v-card>
+          </template>
+        </v-dialog>
       </th>
     </tr>
     </thead>

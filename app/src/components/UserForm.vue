@@ -108,7 +108,7 @@ export default {
     ...mapState(useUsersStore, ['users']),
   },
   methods: {
-    ...mapActions(useUsersStore, ['newUser', 'updateUser']),
+    ...mapActions(useUsersStore, ['newUser']),
     saveUser(){
       let userOBJ = {
         username: this.username,
@@ -121,14 +121,9 @@ export default {
         paese: this.paese,
         provincia: this.provincia
       }
-      if(this.action){
-        this.updateUser(this.user.id, userOBJ)
-        this.$emit('closed')
-      }else{
         this.newUser(userOBJ)
         this.$emit('closed')
       }
-    }
   },
   beforeMount() {
     if(this.action){
