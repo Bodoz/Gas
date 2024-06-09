@@ -1,5 +1,5 @@
 <template>
-  <v-card v-if="false">
+  <v-card>
     <v-data-iterator
         :items="gass"
         :items-per-page="3"
@@ -30,7 +30,7 @@
                 md="4"
             >
               <v-card class="pb-3" border flat>
-<!--                <v-img src="https://www.terradiva.it/wp-content/uploads/2020/12/gruppo-spesa-collettiva-a-prezzi-agevolati.png"></v-img>-->
+                <v-img height="225" src="https://www.terradiva.it/wp-content/uploads/2020/12/gruppo-spesa-collettiva-a-prezzi-agevolati.png"></v-img>
 
                 <v-list-item :subtitle="gas.raw.descrizione" class="mb-2">
                   <template v-slot:title>
@@ -83,41 +83,6 @@
                         </template>
                       </v-card>
                     </v-dialog>
-
-                    <v-dialog max-width="500">
-                      <template v-slot:activator="{ props: activatorProps }">
-                        <v-btn
-                            v-bind="activatorProps"
-                            class="text-none mr-1"
-                            size="small"
-                            color="yellow"
-                            text="Modifica"
-                            border
-                            flat
-                        ></v-btn>
-                      </template>
-
-                      <template v-slot:default="{ isActive }">
-                        <v-card
-                            title="Modifica Gas"
-                        >
-                          <GasForm
-                              :gas="gas"
-                              :action = "true"
-                              @closed="isActive.value = false"
-                          ></GasForm>
-                        </v-card>
-                      </template>
-                    </v-dialog>
-                  <v-btn
-                      class="text-none mr-1"
-                      size="small"
-                      color="red"
-                      text="Elimina"
-                      border
-                      flat
-                      @click.stop="confirmDeleteGas(gas.raw.id_gas)"
-                  ></v-btn>
                 </div>
               </v-card>
             </v-col>
@@ -151,30 +116,6 @@
         </div>
       </template>
     </v-data-iterator>
-    <div class="text-center">
-      <v-dialog max-width="500">
-        <template v-slot:activator="{ props: activatorProps }">
-          <v-btn
-              v-bind="activatorProps"
-              class="text-none"
-              size="small"
-              text="Aggiungi"
-              border
-              flat
-              color="primary"
-          ></v-btn>
-        </template>
-
-        <template v-slot:default="{ isActive }">
-          <v-card
-              title="Nuovo Gas">
-            <GasForm
-                @closed="isActive.value = false"
-            ></GasForm>
-          </v-card>
-        </template>
-      </v-dialog>
-    </div>
     <br>
   </v-card>
 </template>

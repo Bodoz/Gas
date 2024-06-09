@@ -56,7 +56,7 @@ const { handleSubmit, handleReset } = useForm({
     phone (value) {
       if (value?.length > 9 && /[0-9-]+/.test(value)) return true
 
-      return 'Il telefono deve avere almen 9 numeri.'
+      return 'Il telefono deve contenere almeno 10 numeri.'
     },
     email (value) {
       if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
