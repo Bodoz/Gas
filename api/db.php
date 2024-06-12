@@ -51,7 +51,15 @@ function get_user($id){
         $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $user['roles'] = $roles;
     }
-
+    if($user['id_gas']){
+        $sql = "SELECT g.nome FROM users
+                LEFT JOIN gass g on g.id_gas = users.id_gas WHERE users.id = :user_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user['id']);
+        $stmt->execute();
+        $gas = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user['gas'] = $gas;
+    }
     return $user;
 }
 
@@ -73,6 +81,15 @@ function get_user_username($username){
         $stmt->execute();
         $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $user['roles'] = $roles;
+    }
+    if($user['id_gas']){
+        $sql = "SELECT g.nome FROM users
+                LEFT JOIN gass g on g.id_gas = users.id_gas WHERE users.id = :user_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user['id']);
+        $stmt->execute();
+        $gas = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user['gas'] = $gas;
     }
 
     return $user;

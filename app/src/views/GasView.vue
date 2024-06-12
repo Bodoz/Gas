@@ -25,12 +25,12 @@
           <v-row dense>
             <v-col
                 v-for="gas in gass"
-                :key="gas.nome"
+                :key="gas.id_gas"
                 cols="auto"
                 md="4"
             >
               <v-card class="pb-3" border flat>
-                <v-img height="225" src="https://www.terradiva.it/wp-content/uploads/2020/12/gruppo-spesa-collettiva-a-prezzi-agevolati.png"></v-img>
+                <v-img height="225" src="src/assets/icongas.png"></v-img>
 
                 <v-list-item :subtitle="gas.raw.descrizione" class="mb-2">
                   <template v-slot:title>
@@ -56,18 +56,19 @@
                         <v-btn v-bind="activatorProps"
                             class="text-none mr-1"
                             size="small"
-                            color="green"
-                            text="Iscriviti"
+                            :color="(user?.id_gas === gas.raw.id_gas)? 'red': 'green'"
+                            :text="(user?.id_gas === gas.raw.id_gas)? 'Disiscriviti': 'Iscriviti'"
                             border
                             flat
-                               :disabled="!user || user?.id_gas"
+                            :disabled="(!user || user?.id_gas) && !(user?.id_gas === gas.raw.id_gas)"
+                            @click="selectedGas = gas.raw.id_gas"
                         ></v-btn>
 <!--                       todo: se iscritto a un gas disabilita altri ma abbilita disiscriviti di quel gas-->
                       </template>
 
                       <v-card
                           prepend-icon="mdi-leaf-circle"
-                          title="Vuoi iscriverti a questo G.A.S.?"
+                          :title="'Vuoi ' + ((user?.id_gas === selectedGas)? 'dis': '') + 'iscriverti a questo G.A.S.?'"
                       >
                         <template v-slot:actions>
                           <v-spacer></v-spacer>
@@ -78,10 +79,10 @@
                               variant="elevated"
                           >Annulla</v-btn>
                           <v-btn
-                              @click="subscribe(gas.raw.id_gas); dialog=false"
+                              @click="subscribe(); dialog=false"
                               color="green"
                               variant="elevated"
-                          >Iscriviti</v-btn>
+                          >Conferma</v-btn>
                         </template>
                       </v-card>
                     </v-dialog>
@@ -144,6 +145,7 @@ export default {
       id_gas: '',
     },
     g: null,
+    selectedGas: null,
   }),
   computed: {
     ...mapState(useGassStore, ['gass']),
@@ -153,10 +155,13 @@ export default {
     ...mapActions(useGassStore, ['deleteGas', 'newGas', 'updateGas']),
     ...mapActions(useUsersStore, ['subscribeToGas']),
 
-    subscribe(id_gas){
+    subscribe(){
+      if(this.user.id_gas === this.selectedGas){
+        this.selectedGas = null
+      }
       let body = {
         id: this.user.id,
-        id_gas: id_gas,
+        id_gas: this.selectedGas,
       }
 
       this.subscribeToGas(body)

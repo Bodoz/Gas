@@ -155,7 +155,7 @@ $f3 -> route(
   'PUT /user/gas',
     function ($f3, $params){
         $data = json_decode(file_get_contents('php://input'), true);
-        if ($data && $data['id_gas'] > 0 && $data['id']) {
+        if ($data && $data['id'] > 0) {
             $user = subscribe($data['id'], $data['id_gas']);
             $r = [
                 'result' => true,

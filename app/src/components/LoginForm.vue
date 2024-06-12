@@ -42,7 +42,6 @@
                     label="Password"
                     required
                 ></v-text-field>
-                <!-- il max length non serve nel login quanto nel signup -->
               </v-col>
             </v-row>
           </v-container>
@@ -59,7 +58,7 @@
           >Annulla</v-btn>
           <v-btn
               type="submit"
-              color="primary"
+              color="green"
               variant="elevated"
               class="px-4"
               @click="login(); username = ''; password = ''"

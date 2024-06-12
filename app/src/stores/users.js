@@ -29,7 +29,7 @@ export const useUsersStore = defineStore("user",{
                 if(this.user && this.user['role'] === 1){
                     this.isAdmin = true
                 }
-                console.log(this.isAdmin)
+                console.log(data.data)
                 this.show_login = false
             } catch(error) {
                 alert(error)

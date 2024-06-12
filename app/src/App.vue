@@ -20,14 +20,12 @@ export default{
         'mdi-twitter',
         'mdi-instagram',
       ],
+      drawer: null
     }
   },
   computed: {
     logged() {
-      return this.user ? "Logout" : "Login"
-    },
-    welcome(){
-      return this.user ? "Bentornato "+ this.user.username + " 😃" : ""
+      return this.user ? "Profilo" : "Login"
     },
     ...mapState(useUsersStore, ['user']),
     ...mapWritableState(useUsersStore, ['show_login']),
@@ -41,12 +39,17 @@ export default{
 
     login() {
       if (this.user){
-        this.authorize()
-        this.isAdmin = false
+        this.drawer = !this.drawer
       } else {
         this.show_login = true
       }
     },
+
+    logout(){
+      this.drawer=false
+      this.authorize()
+      this.isAdmin = false
+    }
   },
   beforeMount() {
     this.authorized() //verifica user
@@ -60,9 +63,6 @@ export default{
       <LoginForm></LoginForm>
       <IconLogo src="src/assets/logo.svg" @click="$router.push('/')"/>
       <v-spacer />
-      <v-text
-          class="mr-3 mt-4 font-weight-black"
-      >{{ welcome }}</v-text>
         <v-menu
             open-on-hover
             v-if="isAdmin"
@@ -97,10 +97,12 @@ export default{
             :to="i.to"
         >{{ i.text }}</v-tab>
       </v-tabs>
+
       <v-btn
           class="mx-1"
           @click="login"
       >{{ logged }}</v-btn>
+
     </v-app-bar>
 
     <v-main>
@@ -121,6 +123,37 @@ export default{
           ></v-btn>
         </div>
       </v-footer>
+      <v-navigation-drawer
+          location="right"
+          v-model="drawer"
+          temporary
+      >
+        <v-list-item
+            prepend-avatar="https://randomuser.me/api/portraits/men/22.jpg"
+            :title="user?.nome +' '+ user?.cognome"
+            :subtitle="user?.email"
+            class="ma-2"
+        ></v-list-item>
+
+        <v-divider></v-divider>
+
+        <v-list density="compact" >
+          <v-list-item v-if="user?.id_gas" prepend-icon="mdi-leaf-circle" :title="user?.gas.nome" ></v-list-item>
+        </v-list>
+
+        <template v-slot:append>
+          <div class="pa-2">
+            <v-btn
+            block
+            @click="logout()"
+            color="green"
+            >
+              Logout
+            </v-btn>
+          </div>
+        </template>
+      </v-navigation-drawer>
+
     </v-content>
   </v-app>
 </template>
