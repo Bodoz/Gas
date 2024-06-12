@@ -60,7 +60,9 @@
                             text="Iscriviti"
                             border
                             flat
+                               :disabled="!user || user?.id_gas"
                         ></v-btn>
+<!--                       todo: se iscritto a un gas disabilita altri ma abbilita disiscriviti di quel gas-->
                       </template>
 
                       <v-card
@@ -76,7 +78,7 @@
                               variant="elevated"
                           >Annulla</v-btn>
                           <v-btn
-                              @click="dialog = false"
+                              @click="subscribe(gas.raw.id_gas); dialog=false"
                               color="green"
                               variant="elevated"
                           >Iscriviti</v-btn>
@@ -124,6 +126,7 @@
 import {mapState, mapActions} from "pinia";
 import {useGassStore} from "@/stores/gas.js";
 import GasForm from "@/components/GasForm.vue";
+import {useUsersStore} from "@/stores/users.js";
 
 const gassStore = useGassStore()
 export default {
@@ -144,12 +147,19 @@ export default {
   }),
   computed: {
     ...mapState(useGassStore, ['gass']),
+    ...mapState(useUsersStore, ['user']),
   },
   methods: {
     ...mapActions(useGassStore, ['deleteGas', 'newGas', 'updateGas']),
+    ...mapActions(useUsersStore, ['subscribeToGas']),
 
-    confirmDeleteGas(id) {
-      (confirm("sei sicuro di voler cancellare questo gas?")) && this.deleteGas(id)
+    subscribe(id_gas){
+      let body = {
+        id: this.user.id,
+        id_gas: id_gas,
+      }
+
+      this.subscribeToGas(body)
     },
   },
   mounted() {

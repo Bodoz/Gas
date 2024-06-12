@@ -128,6 +128,20 @@ function save_user($id, $username, $password, $nome, $cognome, $email, $via, $ca
     return get_user($id);
 }
 
+//
+function subscribe($id, $id_gas){
+    global $db;
+
+    $sql = "UPDATE users SET id_gas = :id_gas WHERE id = :id ";
+    $stmt = $db -> prepare($sql);
+
+    $stmt->bindValue(':id_gas', $id_gas);
+    $stmt->bindValue(':id', $id);
+    $stmt -> execute();
+
+    return get_user($id);
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///  G A S
 //////////////////////////////////////////////////////////////////////////////////////////////////

@@ -66,5 +66,10 @@ export const useUsersStore = defineStore("user",{
                 this.users = this.users.filter(x => x.id !== id)
             }
         },
+        async subscribeToGas(body) {
+            const data = await axios.put(`api/user/gas`, body)
+            this.user = data.data.data
+            console.log(data.data)
+        },
     },
 })

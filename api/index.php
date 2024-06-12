@@ -150,6 +150,29 @@ $f3->route('PUT /user/@id',
     }
 );
 
+//iscrivere user a gas
+$f3 -> route(
+  'PUT /user/gas',
+    function ($f3, $params){
+        $data = json_decode(file_get_contents('php://input'), true);
+        if ($data && $data['id_gas'] > 0 && $data['id']) {
+            $user = subscribe($data['id'], $data['id_gas']);
+            $r = [
+                'result' => true,
+                'data' => $user,
+                'msg' => 'subscribed'
+            ];
+        }else {
+            $r = [
+                'result' => false,
+                'data' => null,
+                'msg' => 'non subscribed'
+            ];
+        }
+        echo json_encode($r);
+    }
+);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///  G A S
 //////////////////////////////////////////////////////////////////////////////////////////////////
