@@ -153,7 +153,7 @@
           ></v-btn>
 
           <v-btn
-              color="primary"
+              color="green"
               text="Registrati"
               variant="tonal"
               @click="saveUser(); dialog=false"
