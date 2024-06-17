@@ -90,7 +90,7 @@ export default{
       <v-tabs>
 
         <v-tab
-            color="indigo"
+            color="green"
             elevation="7"
             class="mx-1"
             v-for="i in links"
