@@ -14,7 +14,7 @@ export default {
           <div class="w-50 pa-5" style="background-color: rgba(255, 255, 255, 0.7); border-radius: 10px" >
             <h1 class="text-h2">GasGas.it</h1>
             <b>
-            <p class="">Acquista prodotti sani e freschi a KM 0 al giusto prezzo </p>
+            <p class="">Prodotti sani e freschi a KM 0</p>
             </b>
           </div>
         </div>
