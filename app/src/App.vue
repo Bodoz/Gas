@@ -157,5 +157,3 @@ export default{
     </v-content>
   </v-app>
 </template>
-
-<-- ciao -->
