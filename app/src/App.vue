@@ -15,11 +15,6 @@ export default{
         {to: "/gas", text: "Gas"},
         {to: "/contatti", text: "Contatti"},
       ],
-      icons: [
-        'mdi-facebook',
-        'mdi-twitter',
-        'mdi-instagram',
-      ],
       drawer: null
     }
   },
@@ -113,14 +108,6 @@ export default{
         <div class="bg-green d-flex w-100 align-center px-4">
           <IconLogo src="src/assets/logo.svg" @click="$router.push('/')"/>
           <v-spacer></v-spacer>
-          <v-btn
-              v-for="icon in icons"
-              :key="icon"
-              :icon="icon"
-              class="mx-4"
-              size="small"
-              variant="plain"
-          ></v-btn>
         </div>
       </v-footer>
       <v-navigation-drawer
