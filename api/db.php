@@ -97,7 +97,7 @@ function get_user_username($username){
 function get_users(){
     global $db;
 
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT users.*, gass.nome as gas_nome FROM users LEFT JOIN gass on users.id_gas = gass.id_gas;";
     $stmt = $db -> prepare($sql);
     $stmt -> execute();
     $users = $stmt -> fetchAll(PDO::FETCH_ASSOC); //fetchAll se ottengo più righe dalla query

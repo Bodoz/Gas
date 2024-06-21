@@ -21,40 +21,45 @@
         E-mail
       </th>
       <th class="border">
-        via
+        Via
       </th>
       <th class="border">
         C.A.P.
       </th>
       <th class="border">
-        paese
+        Paese
       </th>
       <th class="border">
-        provincia
+        Provincia
       </th>
       <th class="border">
-        Azioni
-        <v-dialog max-width="500">
-          <template v-slot:activator="{ props: activatorProps }">
-            <v-btn
-                v-bind="activatorProps"
-                class="text-none ml-5"
-                text="Aggiungi"
-                border
-                flat
-                color="green"
-            ></v-btn>
-          </template>
+        GAS associato
+      </th>
 
-          <template v-slot:default="{ isActive }">
-            <v-card
-                title="Nuovo Utente">
-              <UserForm
-                  @closed="isActive.value = false"
-              ></UserForm>
-            </v-card>
-          </template>
-        </v-dialog>
+      <th class="border">
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; flex-wrap: nowrap">
+          Azioni
+          <v-dialog max-width="500">
+            <template v-slot:activator="{ props: activatorProps }">
+              <v-btn
+                  v-bind="activatorProps"
+                  class="text-none ml-5"
+                  text="Aggiungi"
+                  border
+                  flat
+                  color="green"
+              ></v-btn>
+            </template>
+            <template v-slot:default="{ isActive }">
+              <v-card
+                  title="Nuovo Utente">
+                <UserForm
+                    @closed="isActive.value = false"
+                ></UserForm>
+              </v-card>
+            </template>
+          </v-dialog>
+        </div>
       </th>
     </tr>
     </thead>
@@ -73,42 +78,46 @@
       <td>{{ user.cap }}</td>
       <td>{{ user.paese }}</td>
       <td>{{ user.provincia }}</td>
+      <td>{{ user.gas_nome == null ? "Non iscritto" : user.gas_nome }}</td>
       <td>
-        <v-dialog max-width="500">
-          <template v-slot:activator="{ props: activatorProps }">
-            <v-btn
-                v-bind="activatorProps"
-                class="text-none mr-1"
-                size="small"
-                color="yellow"
-                text="Modifica"
-                border
-                flat
-            ></v-btn>
-          </template>
 
-          <template v-slot:default="{ isActive }">
-            <v-card
-                title="Modifica User"
-            >
-              <UserForm
-                  :user="user"
-                  :action = "true"
-                  @closed="isActive.value = false"
-              ></UserForm>
-            </v-card>
-          </template>
-        </v-dialog>
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; flex-wrap: nowrap">
+          <v-dialog max-width="500">
+            <template v-slot:activator="{ props: activatorProps }">
+              <v-btn
+                  v-bind="activatorProps"
+                  class="text-none mr-1"
+                  size="small"
+                  color="yellow"
+                  text="Modifica"
+                  border
+                  flat
+              ></v-btn>
+            </template>
 
-        <v-btn
-            class="text-none mr-1"
-            size="small"
-            color="red"
-            text="Elimina"
-            border
-            flat
-            @click.stop="confirmDeleteUser(user.id)"
-        ></v-btn>
+            <template v-slot:default="{ isActive }">
+              <v-card
+                  title="Modifica User"
+              >
+                <UserForm
+                    :user="user"
+                    :action = "true"
+                    @closed="isActive.value = false"
+                ></UserForm>
+              </v-card>
+            </template>
+          </v-dialog>
+
+          <v-btn
+              class="text-none mr-1"
+              size="small"
+              color="red"
+              text="Elimina"
+              border
+              flat
+              @click.stop="confirmDeleteUser(user.id)"
+          ></v-btn>
+        </div>
       </td>
     </tr>
     </tbody>

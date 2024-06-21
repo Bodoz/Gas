@@ -63,7 +63,6 @@
                             :disabled="(!user || user?.id_gas) && !(user?.id_gas === gas.raw.id_gas)"
                             @click="selectedGas = gas.raw.id_gas"
                         ></v-btn>
-<!--                       todo: se iscritto a un gas disabilita altri ma abbilita disiscriviti di quel gas-->
                       </template>
 
                       <v-card

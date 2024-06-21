@@ -37,7 +37,7 @@ $f3->route(
 $f3->route(
     'GET /users/authorized',
     function ($f3, $params) {
-        if ( isset($_SESSION['user'])){
+        if (isset($_SESSION['user'])){
             $r = [
                 'result' => true,
                 'data' => $_SESSION['user'],
@@ -157,11 +157,13 @@ $f3 -> route(
         $data = json_decode(file_get_contents('php://input'), true);
         if ($data && $data['id'] > 0) {
             $user = subscribe($data['id'], $data['id_gas']);
+            unset($user['password']);
             $r = [
                 'result' => true,
                 'data' => $user,
                 'msg' => 'subscribed'
             ];
+            $_SESSION['user'] = $r['data'];
         }else {
             $r = [
                 'result' => false,

@@ -6,46 +6,48 @@
         id_gas
       </th>
       <th class="border ">
-        nome
+        Nome
       </th>
       <th class="border">
-        descrizione
+        Descrizione
       </th>
       <th class="border">
-        via
+        Via
       </th>
       <th class="border">
-        civico
+        Civico
       </th>
       <th class="border">
-        paese
+        Paese
       </th>
       <th class="border">
-        provincia
+        Provincia
       </th>
       <th class="border">
-        Azioni
-        <v-dialog max-width="500">
-          <template v-slot:activator="{ props: activatorProps }">
-            <v-btn
-                v-bind="activatorProps"
-                class="text-none ml-5"
-                text="Aggiungi"
-                border
-                flat
-                color="green"
-            ></v-btn>
-          </template>
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; flex-wrap: nowrap">
+          Azioni
+          <v-dialog max-width="500">
+            <template v-slot:activator="{ props: activatorProps }">
+              <v-btn
+                  v-bind="activatorProps"
+                  class="text-none ml-5"
+                  text="Aggiungi"
+                  border
+                  flat
+                  color="green"
+              ></v-btn>
+            </template>
 
-          <template v-slot:default="{ isActive }">
-            <v-card
-                title="Nuovo Gas">
-              <GasForm
-                  @closed="isActive.value = false"
-              ></GasForm>
-            </v-card>
-          </template>
-        </v-dialog>
+            <template v-slot:default="{ isActive }">
+              <v-card
+                  title="Nuovo Gas">
+                <GasForm
+                    @closed="isActive.value = false"
+                ></GasForm>
+              </v-card>
+            </template>
+          </v-dialog>
+        </div>
       </th>
     </tr>
     </thead>
@@ -62,42 +64,45 @@
       <td>{{ gas.paese }}</td>
       <td>{{ gas.provincia }}</td>
       <td>
-        <v-dialog max-width="500">
-          <template v-slot:activator="{ props: activatorProps }">
-            <v-btn
-                v-bind="activatorProps"
-                class="text-none mr-1"
-                size="small"
-                color="yellow"
-                text="Modifica"
-                border
-                flat
-            ></v-btn>
-          </template>
 
-          <template v-slot:default="{ isActive }">
-            <v-card
-                title="Modifica Gas"
-            >
-              <GasForm
-                  :gas="gas"
-                  :action = "true"
-                  @closed="isActive.value = false"
-              ></GasForm>
-            </v-card>
-          </template>
-        </v-dialog>
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; flex-wrap: nowrap">
+          <v-dialog max-width="500">
+            <template v-slot:activator="{ props: activatorProps }">
+              <v-btn
+                  v-bind="activatorProps"
+                  class="text-none mr-1"
+                  size="small"
+                  color="yellow"
+                  text="Modifica"
+                  border
+                  flat
+              ></v-btn>
+            </template>
+
+            <template v-slot:default="{ isActive }">
+              <v-card
+                  title="Modifica Gas"
+              >
+                <GasForm
+                    :gas="gas"
+                    :action = "true"
+                    @closed="isActive.value = false"
+                ></GasForm>
+              </v-card>
+            </template>
+          </v-dialog>
 
 
-        <v-btn
-            class="text-none mr-1"
-            size="small"
-            color="red"
-            text="Elimina"
-            border
-            flat
-            @click.stop="confirmDeleteGas( gas.id_gas )"
-        ></v-btn>
+          <v-btn
+              class="text-none mr-1"
+              size="small"
+              color="red"
+              text="Elimina"
+              border
+              flat
+              @click.stop="confirmDeleteGas( gas.id_gas )"
+          ></v-btn>
+        </div>
       </td>
     </tr>
     </tbody>

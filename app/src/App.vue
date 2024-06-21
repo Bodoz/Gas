@@ -55,7 +55,7 @@ export default{
 <template>
   <v-app>
     <v-app-bar>
-      <LoginForm></LoginForm>
+      <LoginForm v-if="!user"></LoginForm>
       <IconLogo src="src/assets/logo.svg" @click="$router.push('/')"/>
       <v-spacer />
         <v-menu
@@ -68,6 +68,7 @@ export default{
               v-bind="props"
               rounded="xl"
               size="x-large"
+              color="green"
           >
             <span>Tabelle</span>
           </v-btn>
@@ -82,15 +83,16 @@ export default{
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-tabs>
 
+      <v-tabs>
         <v-tab
             color="green"
             elevation="7"
             class="mx-1"
             v-for="i in links"
             :to="i.to"
-        >{{ i.text }}</v-tab>
+        >{{ i.text }}
+        </v-tab>
       </v-tabs>
 
       <v-btn
@@ -140,7 +142,6 @@ export default{
           </div>
         </template>
       </v-navigation-drawer>
-
     </v-content>
   </v-app>
 </template>
